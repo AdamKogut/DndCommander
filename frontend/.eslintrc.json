@@ -1,0 +1,45 @@
+{
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "import",
+    "tailwindcss"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "plugin:tailwindcss/recommended",
+    // This disables the formatting rules in ESLint that Prettier is going to be responsible for handling.
+    // Make sure it's always the last config, so it gets the chance to override other configs.
+    "eslint-config-prettier"
+  ],
+  "env": {
+    "node": true
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    },
+    "react": {
+      "version": "detect"
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": [
+        "./tsconfig.json"
+      ]
+    }
+  },
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/no-unnecessary-type-constraint": "off"
+  }
+}
