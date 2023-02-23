@@ -5,10 +5,10 @@ import PlayerRow from './PlayerRow';
 type PlayerTableProps = {
   players: PlayerHealth[];
   selectPlayer: (id: number) => void;
-  setPlayerName: (id: number, name: string) => void;
+  editPlayer: (id: number) => void;
 }
 
-function PlayerTable({ players, selectPlayer, setPlayerName }: PlayerTableProps) {
+function PlayerTable({ players, selectPlayer, editPlayer }: PlayerTableProps) {
   return (
     <table>
       <thead>
@@ -16,7 +16,8 @@ function PlayerTable({ players, selectPlayer, setPlayerName }: PlayerTableProps)
           <th className='border-y-2 border-l-2'></th>
           <th className='border-y-2'>Name</th>
           <th className='border-y-2'>Max</th>
-          <th className='border-y-2 border-r-2'>Current</th>
+          <th className='border-y-2'>Current</th>
+          <th className='border-y-2 border-r-2'></th>
         </tr>
       </thead>
       <tbody>
@@ -28,7 +29,7 @@ function PlayerTable({ players, selectPlayer, setPlayerName }: PlayerTableProps)
               onClick={() => selectPlayer(value.Id)}
               onKeyDown={() => selectPlayer(value.Id)}
             >
-              <PlayerRow player={value} setPlayerName={setPlayerName} />
+              <PlayerRow player={value} editPlayer={editPlayer} />
             </tr>
           )
         })}
