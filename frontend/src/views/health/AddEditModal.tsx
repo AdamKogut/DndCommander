@@ -1,40 +1,39 @@
 import { Fragment, useState, useEffect } from 'react';
+import { useModal } from 'src/hooks/UseModal';
 import { PlayerHealth } from 'src/types/players';
 
 type PlayerTableProps = {
-  player: PlayerHealth | undefined;
-  saveAddEdit: (player: PlayerHealth | undefined) => void;
+  playerList: PlayerHealth[];
+  saveEdit: (players: PlayerHealth[] | undefined) => void;
+  isOpen: boolean;
 }
 
-function AddEditModal({ player, saveAddEdit }: PlayerTableProps) {
-  const [name, setName] = useState('');
-  const [max, setMax] = useState(0);
-
-  useEffect(() => {
-    setName(player === undefined ? '' : player.Name);
-    setMax(player === undefined ? 0 : player.Max);
-  }, [player]);
-
-  if (player === undefined)
-  {
-    return <Fragment />
-  }
+function AddEditModal({ playerList, saveEdit, isOpen }: PlayerTableProps) {
+  const [tempPlayerList, setTempPlayerList] = useState([...playerList]);
+  const { create } = useModal();
 
   const onSubmitClick = () => {
-    player.Max = max;
-    player.Name = name;
-
-    saveAddEdit(player);
+    saveEdit(tempPlayerList)
   }
 
   const onCancelClick = () => {
-    saveAddEdit(undefined);
+    saveEdit(undefined);
   }
 
-  return (
-    <Fragment>
-    </Fragment>
-  )
+  const children = <button>HI</button>
+
+  useEffect(() => {
+    if (isOpen) {
+      create({
+        title: 'Edit Players',
+        children,
+        onCancel: onCancelClick,
+        onConfirm: onSubmitClick
+      });
+    }
+  }, [isOpen]);
+
+  return null
 }
 
 export default AddEditModal;
