@@ -9,9 +9,9 @@ function HealthModification({ applyModification }: HealthModificationProps) {
     <div className='flex flex-row place-content-between pt-6'>
       {modificationValues.map((value: number) => {
         const stringValue = value > 0 ? `+${value}` : value;
-        return <button key={value} onClick={() => applyModification(value)}>{stringValue}</button>;
+        return <button key={value} className='btn-primary' onClick={() => applyModification(value)}>{stringValue}</button>;
       })}
-      <button key={'max'} onClick={() => applyModification(0)}>Max</button>
+      <button key={'max'} className='btn-primary' onClick={() => applyModification(0)}>Max</button>
     </div>
   )
 }

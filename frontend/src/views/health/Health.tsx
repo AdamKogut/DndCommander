@@ -4,11 +4,12 @@ import { PlayerHealth } from 'src/types/players';
 import HealthModification from './HealthModification'
 import PlayerTable from './PlayerTable';
 import PlayerListModification from './PlayerListModification';
-import AddEditModal from './AddEditModal';
+import AddEditModal from './EditHealthModal/AddEditModal';
+import { useModal } from 'src/hooks/UseModal';
 
 function Health() {
   const [players, setPlayers] = useState<PlayerHealth[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const { create, destroy } = useModal();
 
   const applyModification = (amt: number) => {
     const currPlayers = [...players];
@@ -26,16 +27,15 @@ function Health() {
   }
 
   const openEditModal = () => {
-
-    setIsOpen(true)
-    // AddEditModal({ playerList: players, saveEdit });
+    create({
+      title: 'Edit Players',
+      children: <AddEditModal playerList={players} saveEdit={saveEdit} cancel={destroy} />
+    });
   }
 
-  const saveEdit = (playerList: PlayerHealth[] | undefined) => {
-    if (playerList !== undefined) {
-      setPlayers(playerList);
-    }
-    setIsOpen(false);
+  const saveEdit = (playerList: PlayerHealth[]) => {
+    setPlayers(playerList);
+    destroy();
   };
 
   const selectPlayer = (id: number) => {
@@ -53,7 +53,6 @@ function Health() {
       <PlayerListModification openEditModal={openEditModal} />
       <PlayerTable selectPlayer={selectPlayer} players={players} />
       <HealthModification applyModification={applyModification} />
-      <AddEditModal playerList={players} saveEdit={saveEdit} isOpen={isOpen}/>
     </div>
   )
 }

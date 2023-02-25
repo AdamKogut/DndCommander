@@ -35,8 +35,8 @@ export const Modal = ({ isOpen, title, children, onCancel, onConfirm }: ModalPro
           </div>
 
           <div className='flex justify-end gap-x-3 rounded-b-md bg-slate-200 p-2'>
-            {onCancel && <button className='py-1' onClick={onInternalCancel}>Cancel</button>}
-            {onConfirm && <button className='py-1' onClick={onInternalConfirm}>Save</button>}
+            {onCancel && <button className='btn-primary py-1' onClick={onInternalCancel}>Cancel</button>}
+            {onConfirm && <button className='btn-primary py-1' onClick={onInternalConfirm}>Save</button>}
           </div>
         </Dialog.Panel>
       </div>
