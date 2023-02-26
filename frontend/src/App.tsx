@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Health from './views/health/Health'
 
 function App() {

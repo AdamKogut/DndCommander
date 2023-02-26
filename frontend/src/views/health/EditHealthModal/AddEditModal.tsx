@@ -1,19 +1,24 @@
-import { Fragment, useState, useEffect, MouseEvent, ChangeEvent } from 'react';
+import { useState, MouseEvent, useMemo } from 'react';
+import { arrayMove } from '@dnd-kit/sortable';
+import { clsx } from 'clsx';
 import { PlayerHealth } from 'src/types/players';
+import SortableList from 'src/components/SortableList';
+import EditPlayerRow from './EditPlayerRow';
 
-type PlayerTableProps = {
+type AddEditModalProps = {
   playerList: PlayerHealth[];
   saveEdit: (players: PlayerHealth[]) => void;
   cancel: () => void;
 }
 
-function AddEditModal({ playerList, saveEdit, cancel }: PlayerTableProps) {
+function AddEditModal({ playerList, saveEdit, cancel }: AddEditModalProps) {
   const [tempPlayerList, setTempPlayerList] = useState([...playerList]);
+  const playerListIds = useMemo(() => tempPlayerList.map(({ Id }: PlayerHealth) => Id), [tempPlayerList]);
 
   const addPlayer = (e: MouseEvent<HTMLButtonElement>) => {
     const pl = [...tempPlayerList];
     pl.push({
-      Id: tempPlayerList.length,
+      Id: tempPlayerList.length + 1,
       Name: '',
       Max: 0,
       Current: 0,
@@ -62,30 +67,43 @@ function AddEditModal({ playerList, saveEdit, cancel }: PlayerTableProps) {
     setTempPlayerList(pl);
   }
 
+  const updateItems = (start: number, end: number) => {
+    const pl = [...tempPlayerList];
+    setTempPlayerList(arrayMove(pl, start, end));
+  }
+
+  const rows = tempPlayerList.map((value: PlayerHealth) => {
+    return (
+      <EditPlayerRow
+        key={value.Id}
+        player={value}
+        deletePlayer={deletePlayer}
+        changeMax={changeMax}
+        changeName={changeName}
+      />
+    )
+  })
+
   return (
-    <Fragment>
-      <button onClick={addPlayer}>Add</button>
-      <table className='m-4'>
+    <div className='min-w-[34vw]'>
+      <button className='btn-primary my-4 ml-4 mr-20' onClick={addPlayer}>Add Player</button>
+      <table className={'mx-4 mb-4'}>
+        <thead>
+          <tr className={clsx(tempPlayerList.length === 0 && 'hidden')}>
+            <td></td>
+            <td>Name</td>
+            <td>Max HP</td>
+          </tr>
+        </thead>
         <tbody>
-          {tempPlayerList.map((value: PlayerHealth) => {
-            return (
-              <tr key={value.Id} className='h-12 border-2'>
-                <td></td>
-                <td className='px-4'>
-                  <input type="text" value={value.Name} onChange={(e:ChangeEvent<HTMLInputElement>) => changeName(value.Id, e.currentTarget.value)} />
-                </td>
-                <td className='pr-4'>
-                  <input type="text" value={value.Max} onChange={(e:ChangeEvent<HTMLInputElement>) => changeMax(value.Id, e.currentTarget.value)} />
-                </td>
-                <td><button onClick={() => deletePlayer(value.Id)}>Delete</button></td>
-              </tr>
-            );
-          })}
+          <SortableList idList={playerListIds} setArray={updateItems} itemList={rows} />
         </tbody>
       </table>
-      <button onClick={cancel}>Cancel</button>
-      <button onClick={() => saveEdit(tempPlayerList)}>Save</button>
-    </Fragment>
+      <div className='bg-slate-200 text-right'>
+        <button className='btn-primary mt-4 mr-4 py-1' onClick={cancel}>Cancel</button>
+        <button className='btn-primary mt-4 mr-4 py-1' onClick={() => saveEdit(tempPlayerList)}>Save</button>
+      </div>
+    </div>
   );
 }
 
