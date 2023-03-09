@@ -16,6 +16,7 @@ function PlayerRow({ player }: PlayerTableProps) {
       <td className='w-[60%] py-[13px]'>{player.Name}</td>
       <td>{player.Max}</td>
       <td>{player.Current}</td>
+      <td>{player.TempHp}</td>
       <td className='w-10'>
         <img className={clsx(!isError && 'hidden', 'w-9')} src={ErrorSign} alt='Error Icon'/>
         <img className={clsx(!isWarning && 'hidden', 'w-9')} src={WarningSign} alt='warning Icon'/>

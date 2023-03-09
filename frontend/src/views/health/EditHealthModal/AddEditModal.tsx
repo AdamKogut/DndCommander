@@ -1,9 +1,7 @@
 import { useState, MouseEvent, useMemo } from 'react';
 import { arrayMove } from '@dnd-kit/sortable';
-import { clsx } from 'clsx';
 import { PlayerHealth } from 'src/types/players';
-import SortableList from 'src/components/SortableList';
-import EditPlayerRow from './EditPlayerRow';
+import EditPlayerTable from './EditPlayerTable';
 
 type AddEditModalProps = {
   playerList: PlayerHealth[];
@@ -12,7 +10,7 @@ type AddEditModalProps = {
 }
 
 function AddEditModal({ playerList, saveEdit, cancel }: AddEditModalProps) {
-  const [tempPlayerList, setTempPlayerList] = useState([...playerList]);
+  const [tempPlayerList, setTempPlayerList] = useState(JSON.parse(JSON.stringify(playerList)));
   const playerListIds = useMemo(() => tempPlayerList.map(({ Id }: PlayerHealth) => Id), [tempPlayerList]);
 
   const addPlayer = (e: MouseEvent<HTMLButtonElement>) => {
@@ -22,7 +20,8 @@ function AddEditModal({ playerList, saveEdit, cancel }: AddEditModalProps) {
       Name: '',
       Max: 0,
       Current: 0,
-      IsSelected: false
+      IsSelected: false,
+      TempHp: 0
     });
     setTempPlayerList(pl);
     e.stopPropagation();
@@ -72,38 +71,17 @@ function AddEditModal({ playerList, saveEdit, cancel }: AddEditModalProps) {
     setTempPlayerList(arrayMove(pl, start, end));
   }
 
-  const rows = tempPlayerList.map((value: PlayerHealth) => {
-    return (
-      <EditPlayerRow
-        key={value.Id}
-        player={value}
-        deletePlayer={deletePlayer}
-        changeMax={changeMax}
-        changeName={changeName}
-      />
-    )
-  })
-
   return (
-    <div className='min-w-[34vw]'>
-      <button className='btn-primary my-4 ml-4 mr-20' onClick={addPlayer}>Add Player</button>
-      <table className={'mx-4 mb-4'}>
-        <thead>
-          <tr className={clsx(tempPlayerList.length === 0 && 'hidden')}>
-            <td></td>
-            <td>Name</td>
-            <td>Max HP</td>
-          </tr>
-        </thead>
-        <tbody>
-          <SortableList idList={playerListIds} setArray={updateItems} itemList={rows} />
-        </tbody>
-      </table>
-      <div className='bg-slate-200 text-right'>
-        <button className='btn-primary mt-4 mr-4 py-1' onClick={cancel}>Cancel</button>
-        <button className='btn-primary mt-4 mr-4 py-1' onClick={() => saveEdit(tempPlayerList)}>Save</button>
-      </div>
-    </div>
+    <EditPlayerTable
+      playerList={tempPlayerList}
+      playerListIds={playerListIds}
+      cancel={cancel}
+      saveEdit={saveEdit}
+      addPlayer={addPlayer}
+      changeName={changeName}
+      changeMax={changeMax}
+      deletePlayer={deletePlayer}
+      updateItems={updateItems}/>
   );
 }
 

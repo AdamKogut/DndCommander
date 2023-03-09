@@ -4,4 +4,5 @@ export type PlayerHealth = {
   Max: number;
   Current: number;
   IsSelected: boolean;
+  TempHp: number;
 }

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { clsx } from 'clsx';
 import { PlayerHealth } from 'src/types/players';
 import HealthModification from './HealthModification'
@@ -6,24 +5,20 @@ import PlayerTable from './PlayerTable';
 import PlayerListModification from './PlayerListModification';
 import AddEditModal from './EditHealthModal/AddEditModal';
 import { useModal } from 'src/hooks/UseModal';
+import { useAppSelector, useAppDispatch } from 'src/store';
+import { changePlayers, changePlayerSelection, changePlayerHealth, changePlayerTempHealth } from 'src/services/Players';
 
 function Health() {
-  const [players, setPlayers] = useState<PlayerHealth[]>([]);
+  const { players } = useAppSelector((state) => state.Player);
+  const dispatch = useAppDispatch();
   const { create, destroy } = useModal();
 
   const applyModification = (amt: number) => {
-    const currPlayers = [...players];
-    currPlayers.forEach((value: PlayerHealth) => {
-      if (value.IsSelected) {
-        if (amt === 0) {
-          value.Current = value.Max;
-        }
-        else {
-          value.Current += amt
-        }
-      }
-    });
-    setPlayers(currPlayers);
+    dispatch(changePlayerHealth(amt));
+  }
+
+  const applyTempModification = (amt: number) => {
+    dispatch(changePlayerTempHealth(amt));
   }
 
   const openEditModal = () => {
@@ -34,25 +29,19 @@ function Health() {
   }
 
   const saveEdit = (playerList: PlayerHealth[]) => {
-    setPlayers(playerList);
+    dispatch(changePlayers(playerList));
     destroy();
   };
 
   const selectPlayer = (id: number) => {
-    const currPlayers = [...players];
-    const foundPlayer = currPlayers.find((value: PlayerHealth) => value.Id === id);
-    if (foundPlayer)
-    {
-      foundPlayer.IsSelected = !foundPlayer.IsSelected;
-      setPlayers(currPlayers);
-    }
+    dispatch(changePlayerSelection(id));
   }
 
   return (
-    <div className={clsx('grid w-[50vw] grid-cols-1')}>
+    <div className={clsx('grid grid-cols-1 p-4 sm:ml-64')}>
       <PlayerListModification openEditModal={openEditModal} />
       <PlayerTable selectPlayer={selectPlayer} players={players} />
-      <HealthModification applyModification={applyModification} />
+      <HealthModification applyModification={applyModification} applyTempModification={applyTempModification} />
     </div>
   )
 }

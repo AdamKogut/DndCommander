@@ -15,6 +15,7 @@ function PlayerTable({ players, selectPlayer }: PlayerTableProps) {
           <th className='border-y-2'>Name</th>
           <th className='border-y-2'>Max</th>
           <th className='border-y-2'>Current</th>
+          <th className='border-y-2'>Temp HP</th>
           <th className='border-y-2 border-r-2'></th>
         </tr>
       </thead>
