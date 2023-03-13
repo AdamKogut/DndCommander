@@ -35,17 +35,17 @@ function EditPlayerRow({ player, deletePlayer, changeMax, changeName }: PlayerTa
       className={clsx('h-12 border-y-2 bg-white', isDragging && 'invisible')}
       style={style}
     >
-      <td {...attributes} {...listeners}>
-        <img className='h-8' src={DragDrop} alt='Drag and drop icon' />
+      <td {...attributes} {...listeners} className='w-[40px]'>
+        <img className='h-8 w-8' src={DragDrop} alt='Drag and drop icon' />
       </td>
       <td className='px-2'>
-        <input className='border-2 px-2' type="text" value={player.Name} onChange={(e: ChangeEvent<HTMLInputElement>) => changeName(player.Id, e.currentTarget.value)} />
+        <input className='w-[100%] border-2 px-2' type="text" value={player.Name} onChange={(e: ChangeEvent<HTMLInputElement>) => changeName(player.Id, e.currentTarget.value)} />
       </td>
       <td className='pr-2'>
         <input className='w-16 border-2 px-2' type="text" value={player.Max} onChange={(e: ChangeEvent<HTMLInputElement>) => changeMax(player.Id, e.currentTarget.value)} />
       </td>
       <td className='pr-2'>
-        <button className='bg-red-500' onClick={() => deletePlayer(player.Id)}>Delete</button>
+        <button className='w-[99px] bg-red-500' onClick={() => deletePlayer(player.Id)}>Delete</button>
       </td>
     </tr>
   );

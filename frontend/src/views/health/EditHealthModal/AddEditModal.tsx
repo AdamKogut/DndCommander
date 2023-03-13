@@ -16,13 +16,14 @@ function AddEditModal({ playerList, saveEdit, cancel }: AddEditModalProps) {
   const addPlayer = (e: MouseEvent<HTMLButtonElement>) => {
     const pl = [...tempPlayerList];
     pl.push({
-      Id: tempPlayerList.length + 1,
+      Id: Date.now(),
       Name: '',
       Max: 0,
       Current: 0,
       IsSelected: false,
       TempHp: 0
     });
+    console.log(pl)
     setTempPlayerList(pl);
     e.stopPropagation();
   };

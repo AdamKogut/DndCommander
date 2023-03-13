@@ -27,10 +27,10 @@ export const Modal = ({ isOpen, title, children, onCancel, onConfirm }: ModalPro
   return (
     <Dialog open={isOpen} onClose={onInternalCancel} className='relative z-50'>
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-      <div className="fixed inset-0 flex items-center justify-center p-4">
-        <Dialog.Panel className="mx-auto min-w-[33vw] max-w-[80vw] rounded bg-white p-4">
+      <div className="fixed inset-0 flex h-[100vh] w-[100vw] items-center justify-center sm:p-4">
+        <Dialog.Panel className="mx-auto h-[100vh] w-[100vw] min-w-[33vw] bg-white sm:rounded sm:p-4">
           <Dialog.Title className='rounded-t-md bg-slate-200 p-2 text-xl'>{title}</Dialog.Title>
-          <div className='border-x-2'>
+          <div className='h-[calc(100%-60px)] overflow-y-auto border-x-2'>
             {children}
           </div>
 

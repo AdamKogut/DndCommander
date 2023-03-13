@@ -41,20 +41,23 @@ function EditPlayerTable({
   })
 
   return (
-    <div className='min-w-[34vw]'>
+    <div className='h-full max-h-full min-w-[34vw]'>
       <button className='btn-primary my-4 ml-4 mr-20' onClick={addPlayer}>Add Player</button>
-      <table className={'mx-4 mb-4'}>
-        <thead>
-          <tr className={clsx(playerList.length === 0 && 'hidden')}>
-            <td></td>
-            <td>Name</td>
-            <td>Max HP</td>
-          </tr>
-        </thead>
-        <tbody>
-          <SortableList idList={playerListIds} setArray={updateItems} itemList={rows} />
-        </tbody>
-      </table>
+      <div className='h-[calc(100%-127px)] max-h-[calc(100%-127px)] overflow-y-auto'>
+        <table className={'w-[100%] table-fixed'}>
+          <thead>
+            <tr className={clsx(playerList.length === 0 && 'hidden')}>
+              <td className='w-8'></td>
+              <td className='px-2'>Name</td>
+              <td className='w-20 pr-2'>Max HP</td>
+              <td className='w-[110px] px-2'></td>
+            </tr>
+          </thead>
+          <tbody>
+            <SortableList idList={playerListIds} setArray={updateItems} itemList={rows} />
+          </tbody>
+        </table>
+      </div>
       <div className='bg-slate-200 text-right'>
         <button className='btn-primary mt-4 mr-4 py-1' onClick={cancel}>Cancel</button>
         <button className='btn-primary mt-4 mr-4 py-1' onClick={() => saveEdit(playerList)}>Save</button>

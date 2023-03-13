@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { PlayerSlice } from "./services/Players";
+import { SideBarSlice } from "./services/SideBar";
 
 const persistConfig = {
   key: 'player-health',
@@ -13,7 +14,8 @@ const persistedPlayerSlice = persistReducer(persistConfig, PlayerSlice.reducer);
 
 export const store = configureStore({
   reducer: {
-    [PlayerSlice.name]: persistedPlayerSlice
+    [PlayerSlice.name]: persistedPlayerSlice,
+    [SideBarSlice.name]: SideBarSlice.reducer
   }
 });
 
