@@ -1,14 +1,15 @@
-import { redirect } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { toggleSideBar } from "src/services/SideBar";
 import { useAppDispatch } from "src/store";
 import { SideBarItemProps } from '../../types/sideBar';
 
 function SideBarItem({ displayText, linkTarget, VisibleIcon }: SideBarItemProps) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     dispatch(toggleSideBar());
-    redirect(linkTarget)
+    navigate(linkTarget);
   }
 
   return (
