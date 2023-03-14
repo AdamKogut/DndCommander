@@ -11,7 +11,7 @@ function HealthModification({ applyModification, applyTempModification }: Health
 
   return (
     <Fragment>
-      <div className='flex flex-row place-content-between pt-6'>
+      <div className='flex flex-row  place-content-between pt-6 lg:w-[500px]'>
         {modificationValues.map((value: number) => {
           const stringValue = value > 0 ? `+${value}` : value;
           return <button key={value} className='btn-primary px-3' onClick={() => applyModification(value)}>{stringValue}</button>;

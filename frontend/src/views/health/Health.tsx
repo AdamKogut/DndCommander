@@ -38,7 +38,7 @@ function Health() {
   }
 
   return (
-    <div className={clsx('grid h-[calc(100vh-60px)] grid-cols-1 overflow-y-auto overflow-x-hidden p-4 sm:ml-64')}>
+    <div className={clsx('flex flex-col h-[calc(100vh-60px)] overflow-y-auto overflow-x-hidden p-4 sm:ml-64')}>
       <PlayerListModification openEditModal={openEditModal} />
       <PlayerTable selectPlayer={selectPlayer} players={players} />
       <HealthModification applyModification={applyModification} applyTempModification={applyTempModification} />

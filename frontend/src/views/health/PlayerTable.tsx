@@ -14,10 +14,10 @@ function PlayerTable({ players, selectPlayer }: PlayerTableProps) {
         <thead>
           <tr>
             <th className='break-words border-y-2 border-l-2'>Name</th>
-            <th className='w-14 border-y-2'>Max</th>
-            <th className='w-16 border-y-2'>Current</th>
-            <th className='w-12 border-y-2'>Temp HP</th>
-            <th className='w-9 border-y-2 border-r-2'></th>
+            <th className='w-14 border-y-2 md:w-16'>Max</th>
+            <th className='w-16 border-y-2 md:w-20'>Current</th>
+            <th className='w-12 border-y-2 md:w-14 lg:w-20'>Temp HP</th>
+            <th className='w-9 border-y-2 border-r-2 md:w-12 lg:w-14'></th>
           </tr>
         </thead>
         <tbody>

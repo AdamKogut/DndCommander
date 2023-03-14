@@ -43,7 +43,7 @@ function EditPlayerTable({
   return (
     <div className='h-full max-h-full min-w-[34vw]'>
       <button className='btn-primary my-4 ml-4 mr-20' onClick={addPlayer}>Add Player</button>
-      <div className='h-[calc(100%-127px)] max-h-[calc(100%-127px)] overflow-y-auto'>
+      <div className='h-[calc(100%-127px)] overflow-y-auto sm:max-h-[calc(80vh-217px)]'>
         <table className={'w-[100%] table-fixed'}>
           <thead>
             <tr className={clsx(playerList.length === 0 && 'hidden')}>
