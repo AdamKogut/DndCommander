@@ -4,18 +4,26 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { PlayerSlice } from "./services/Players";
 import { SideBarSlice } from "./services/SideBar";
+import { EquipmentSlice } from "./services/Equipment";
 
-const persistConfig = {
+const persistHealthConfig = {
   key: 'player-health',
   storage
 };
 
-const persistedPlayerSlice = persistReducer(persistConfig, PlayerSlice.reducer);
+const persistEquipmentConfig = {
+  key: 'equipment',
+  storage
+};
+
+const persistedPlayerSlice = persistReducer(persistHealthConfig, PlayerSlice.reducer);
+const persistedEquipmentSlice = persistReducer(persistEquipmentConfig, EquipmentSlice.reducer);
 
 export const store = configureStore({
   reducer: {
     [PlayerSlice.name]: persistedPlayerSlice,
-    [SideBarSlice.name]: SideBarSlice.reducer
+    [SideBarSlice.name]: SideBarSlice.reducer,
+    [EquipmentSlice.name]: persistedEquipmentSlice
   }
 });
 
