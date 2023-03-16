@@ -1,17 +1,17 @@
 import { useState, MouseEvent, useMemo } from 'react';
 import { arrayMove } from '@dnd-kit/sortable';
-import { CoinItem } from 'src/types/equipment';
+import { EquipmentItem } from 'src/types/equipment';
 import EditMoneyTable from './EditMoneyTable';
 
 type MoneyModalProps = {
-  moneyList: CoinItem[];
-  saveEdit: (moneys: CoinItem[]) => void;
+  moneyList: EquipmentItem[];
+  saveEdit: (moneys: EquipmentItem[]) => void;
   cancel: () => void;
 }
 
 function MoneyModal({ moneyList, saveEdit, cancel }: MoneyModalProps) {
   const [tempMoneyList, setTempMoneyList] = useState(JSON.parse(JSON.stringify(moneyList)));
-  const moneyListIds = useMemo(() => tempMoneyList.map(({ Id }: CoinItem) => Id), [tempMoneyList]);
+  const moneyListIds = useMemo(() => tempMoneyList.map(({ Id }: EquipmentItem) => Id), [tempMoneyList]);
 
   const addMoney = (e: MouseEvent<HTMLButtonElement>) => {
     const pl = [...tempMoneyList];
@@ -20,7 +20,6 @@ function MoneyModal({ moneyList, saveEdit, cancel }: MoneyModalProps) {
       Name: '',
       Amount:0
     });
-    console.log(pl)
     setTempMoneyList(pl);
     e.stopPropagation();
   };

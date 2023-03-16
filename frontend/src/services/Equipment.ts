@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CoinItem } from 'src/types/equipment';
+import { EquipmentItem } from 'src/types/equipment';
 
 type EquipmentSliceState = {
-  currentCoin: CoinItem[]
+  currentCoin: EquipmentItem[],
+  currentEquipment: EquipmentItem[]
 }
 
 type ChangeCoinAmountType = {
@@ -10,13 +11,32 @@ type ChangeCoinAmountType = {
   amt: string
 }
 
-const initialState: EquipmentSliceState = {currentCoin:[]};
+const initialState: EquipmentSliceState = {
+  currentCoin: [
+    {
+      Id: 0,
+      Name: 'Copper',
+      Amount: 0
+    },
+    {
+      Id: 1,
+      Name: 'Silver',
+      Amount: 0
+    },
+    {
+      Id: 2,
+      Name: 'Gold',
+      Amount: 0
+    },
+  ],
+  currentEquipment: []
+};
 
 export const EquipmentSlice = createSlice({
   name: 'Equipment',
   initialState,
   reducers: {
-    changeCoin: (state, { payload }: PayloadAction<CoinItem[]>) => {
+    changeCoin: (state, { payload }: PayloadAction<EquipmentItem[]>) => {
       state.currentCoin = payload;
     },
     changeCoinAmount: (state, { payload }: PayloadAction<ChangeCoinAmountType>) => {
@@ -31,9 +51,15 @@ export const EquipmentSlice = createSlice({
       {
         foundCoin.Amount = amt;
       }
-      
+    },
+    addEquipmentItem: (state) => {
+      state.currentEquipment.push({
+        Id: Date.now(),
+        Name: '',
+        Amount: 0
+      })
     }
   }
 });
 
-export const { changeCoin, changeCoinAmount } = EquipmentSlice.actions;
+export const { changeCoin, changeCoinAmount, addEquipmentItem } = EquipmentSlice.actions;

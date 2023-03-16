@@ -1,12 +1,12 @@
 import { ChangeEvent } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { CoinItem } from 'src/types/equipment';
+import { EquipmentItem } from 'src/types/equipment';
 import { clsx } from 'clsx';
 import DragDrop from 'src/Images/DragDrop.png';
 
 type MoneyTableProps = {
-  Money: CoinItem;
+  Money: EquipmentItem;
   deleteMoney: (id: number) => void;
   changeName: (id: number, value: string) => void;
 }

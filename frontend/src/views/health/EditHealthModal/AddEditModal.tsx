@@ -23,7 +23,6 @@ function AddEditModal({ playerList, saveEdit, cancel }: AddEditModalProps) {
       IsSelected: false,
       TempHp: 0
     });
-    console.log(pl)
     setTempPlayerList(pl);
     e.stopPropagation();
   };

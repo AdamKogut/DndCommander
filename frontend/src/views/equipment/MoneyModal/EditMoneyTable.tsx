@@ -1,14 +1,14 @@
 import { MouseEvent } from 'react';
 import { clsx } from 'clsx';
-import { CoinItem } from 'src/types/equipment';
+import { EquipmentItem } from 'src/types/equipment';
 import SortableList from 'src/components/SortableList';
 import EditMoneyRow from './EditMoneyRow';
 import { UniqueIdentifier } from '@dnd-kit/core';
 
 type EditMoneyTableProps = {
-  MoneyList: CoinItem[];
+  MoneyList: EquipmentItem[];
   MoneyListIds: UniqueIdentifier[];
-  saveEdit: (moneys: CoinItem[]) => void;
+  saveEdit: (moneys: EquipmentItem[]) => void;
   cancel: () => void;
   addMoney: (e: MouseEvent<HTMLButtonElement>) => void;
   changeName: (id: number, name: string) => void;
@@ -26,7 +26,7 @@ function EditMoneyTable({
   deleteMoney,
   updateItems
 }: EditMoneyTableProps) {
-  const rows = MoneyList.map((value: CoinItem) => {
+  const rows = MoneyList.map((value: EquipmentItem) => {
     return (
       <EditMoneyRow
         key={value.Id}
