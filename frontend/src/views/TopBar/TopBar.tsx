@@ -6,7 +6,7 @@ function TopBar() {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="sticky top-0 flex h-[60px] w-[100vw] flex-row place-content-between bg-slate-200">
+    <div className="sticky top-0 flex h-[60px] w-full flex-row place-content-between bg-slate-200">
       {/* hamburger button */}
       <button
         data-drawer-target="default-sidebar"

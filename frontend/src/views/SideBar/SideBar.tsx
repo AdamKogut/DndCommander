@@ -9,7 +9,7 @@ import { ReactComponent as EquipmentIcon } from '../../Images/BackpackIcon.svg';
 import { ReactComponent as CombatIcon } from '../../Images/SwordIcon.svg';
 import SideBarItem from './SideBarItem';
 import CloseSideBar from './CloseSideBar';
-import ViewCoin from './ViewCoin';
+import ViewCoin from './SideBarCoinStats';
 
 function SideBar() {
   const { SideBarOpen } = useAppSelector((store) => store.SideBar);
@@ -49,7 +49,7 @@ function SideBar() {
     <aside
       id="default-sidebar"
       className={
-        clsx("fixed top-0 left-0 z-40 h-screen w-64 -translate-x-full transition-transform sm:translate-x-0",
+        clsx("fixed top-0 left-0 z-40 h-full w-64 -translate-x-full transition-transform sm:translate-x-0",
           shouldBeOpen && "transform-none",
           !shouldBeOpen && "-translate-x-full"
         )}

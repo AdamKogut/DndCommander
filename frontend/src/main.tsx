@@ -8,13 +8,15 @@ import App from './App';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <Router>
-        <ModalContextProvider>
-          <App />
-        </ModalContextProvider>
-      </Router>
-    </PersistGate>
-  </Provider>,
+  <div className='fixed inset-0 h-full w-full'>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          <ModalContextProvider>
+            <App />
+          </ModalContextProvider>
+        </Router>
+      </PersistGate>
+    </Provider>
+  </div>,
 )

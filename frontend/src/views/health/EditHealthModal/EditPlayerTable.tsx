@@ -41,9 +41,9 @@ function EditPlayerTable({
   })
 
   return (
-    <div className='h-full max-h-full min-w-[34vw]'>
+    <div className='h-full max-h-full min-w-[34%]'>
       <button className='btn-primary my-4 ml-4 mr-20' onClick={addPlayer}>Add Player</button>
-      <div className='h-[calc(100%-127px)] overflow-y-auto sm:max-h-[calc(80vh-217px)]'>
+      <div className='h-[calc(100%-127px)] overflow-y-auto'>
         <table className={'w-[100%] table-fixed'}>
           <thead>
             <tr className={clsx(playerList.length === 0 && 'hidden')}>
@@ -58,7 +58,7 @@ function EditPlayerTable({
           </tbody>
         </table>
       </div>
-      <div className='bg-slate-200 text-right'>
+      <div className='bg-slate-200 pb-1 text-right'>
         <button className='btn-primary mt-4 mr-4 py-1' onClick={cancel}>Cancel</button>
         <button className='btn-primary mt-4 mr-4 py-1' onClick={() => saveEdit(playerList)}>Save</button>
       </div>

@@ -28,21 +28,22 @@ export const PlayerSlice = createSlice({
             value.Current = value.Max;
           }
           else {
+            let tempPayload = payload;
             if (payload < 0 && value.TempHp > 0)
             {
               const tempDiff = payload + value.TempHp;
               if (tempDiff < 0)
               {
-                payload = tempDiff;
+                tempPayload = tempDiff;
                 value.TempHp = 0;
               }
               else
               {
-                payload = 0;
+                tempPayload = 0;
                 value.TempHp = Math.abs(tempDiff);
               }
             }
-            value.Current += payload
+            value.Current += tempPayload
           }
         }
       });
