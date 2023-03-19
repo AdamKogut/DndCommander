@@ -1,9 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PlayerHealth } from 'src/types/players';
-
-type PlayerSliceState = {
-  players: PlayerHealth[]
-}
+import { createSlice, PayloadAction, createListenerMiddleware, isAnyOf } from '@reduxjs/toolkit';
+import { PlayerHealth, PlayerSliceState } from 'src/types/players';
+import { changeSavedPlayers } from './Campaigns';
 
 const initialState: PlayerSliceState = {players:[]};
 
@@ -59,3 +56,14 @@ export const PlayerSlice = createSlice({
 });
 
 export const { changePlayers, changePlayerSelection, changePlayerHealth, changePlayerTempHealth } = PlayerSlice.actions;
+
+export const playerPersistListener = createListenerMiddleware();
+
+playerPersistListener.startListening({
+  matcher: isAnyOf(changePlayers, changePlayerSelection, changePlayerHealth, changePlayerTempHealth),
+  effect: (action, listenerApi) => {
+    const { Player } = listenerApi.getState() as { Player: PlayerSliceState };
+    
+    listenerApi.dispatch(changeSavedPlayers(Player));
+  }
+})

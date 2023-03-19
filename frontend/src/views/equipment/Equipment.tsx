@@ -1,5 +1,4 @@
 import { clsx } from 'clsx';
-
 import { useModal } from 'src/hooks/UseModal';
 import { useAppSelector, useAppDispatch } from 'src/store';
 import EquipmentList from './EquipmentList';

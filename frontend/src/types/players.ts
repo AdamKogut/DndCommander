@@ -6,3 +6,7 @@ export type PlayerHealth = {
   IsSelected: boolean;
   TempHp: number;
 }
+
+export type PlayerSliceState = {
+  players: PlayerHealth[]
+}

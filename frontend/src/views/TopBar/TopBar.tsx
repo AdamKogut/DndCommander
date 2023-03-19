@@ -1,9 +1,21 @@
+import { useModal } from 'src/hooks/UseModal';
 import { toggleSideBar } from 'src/services/SideBar';
 import { useAppDispatch } from 'src/store';
-import { ReactComponent as AccountIcon} from '../../Images/AccountIcon.svg';
+import { ReactComponent as AccountIcon } from '../../Images/AccountIcon.svg';
+import Account from './Account/Account';
 
 function TopBar() {
+  const { create } = useModal();
   const dispatch = useAppDispatch();
+
+  const openAccount = () => {
+    create({
+      title: 'Account Info',
+      children: <Account />,
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      onClose: () => { }
+    });
+  }
 
   return (
     <div className="sticky top-0 flex h-[60px] w-full flex-row place-content-between bg-slate-200">
@@ -23,7 +35,7 @@ function TopBar() {
       </button>
 
       {/* account button */}
-      <AccountIcon className=' mr-4 h-[60px]' />
+      <AccountIcon className=' mr-4 h-[60px]' onClick={openAccount} />
     </div>
   )
 }

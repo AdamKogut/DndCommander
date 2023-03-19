@@ -1,10 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { EquipmentItem } from 'src/types/equipment';
-
-type EquipmentSliceState = {
-  currentCoin: EquipmentItem[],
-  currentEquipment: EquipmentItem[]
-}
+import { createSlice, PayloadAction, createListenerMiddleware, isAnyOf } from '@reduxjs/toolkit';
+import { EquipmentItem, EquipmentSliceState } from 'src/types/equipment';
+import { changeSavedEquipment } from './Campaigns';
 
 type ChangeCoinAmountType = {
   id: number,
@@ -14,17 +10,17 @@ type ChangeCoinAmountType = {
 const initialState: EquipmentSliceState = {
   currentCoin: [
     {
-      Id: 0,
+      Id: 1,
       Name: 'Copper',
       Amount: 0
     },
     {
-      Id: 1,
+      Id: 2,
       Name: 'Silver',
       Amount: 0
     },
     {
-      Id: 2,
+      Id: 3,
       Name: 'Gold',
       Amount: 0
     },
@@ -52,6 +48,9 @@ export const EquipmentSlice = createSlice({
         foundCoin.Amount = amt;
       }
     },
+    changeEquipment: (state, { payload }: PayloadAction<EquipmentItem[]>) => {
+      state.currentEquipment = payload;
+    },
     addEquipmentItem: (state) => {
       state.currentEquipment.push({
         Id: Date.now(),
@@ -62,4 +61,15 @@ export const EquipmentSlice = createSlice({
   }
 });
 
-export const { changeCoin, changeCoinAmount, addEquipmentItem } = EquipmentSlice.actions;
+export const { changeCoin, changeCoinAmount, changeEquipment, addEquipmentItem } = EquipmentSlice.actions;
+
+export const equipmentPersistListener = createListenerMiddleware();
+
+equipmentPersistListener.startListening({
+  matcher: isAnyOf(changeCoin, changeCoinAmount, changeEquipment, addEquipmentItem),
+  effect: (action, listenerApi) => {
+    const { Equipment } = listenerApi.getState() as { Equipment: EquipmentSliceState };
+    
+    listenerApi.dispatch(changeSavedEquipment(Equipment));
+  }
+})

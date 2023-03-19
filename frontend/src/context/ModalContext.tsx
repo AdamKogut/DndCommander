@@ -6,6 +6,7 @@ type Modal = {
   children: ReactNode;
   onConfirm?: () => void;
   onCancel?: () => void;
+  onClose?: () => void;
 }
 
 type ModalContextType = {
@@ -26,7 +27,7 @@ const InternalModal = ({ modal, destroy }: InternalModalProps) => {
     return null;
   }
 
-  const { title, children, onConfirm, onCancel } = modal;
+  const { title, children, onConfirm, onCancel, onClose } = modal;
 
   const onLocalCancel = () => {
     if (onCancel) {
@@ -42,12 +43,20 @@ const InternalModal = ({ modal, destroy }: InternalModalProps) => {
     }
   };
 
+  const onLocalClose = () => {
+    if (onClose) {
+      onClose();
+      destroy();
+    }
+  };
+
   return (
     <Modal
       isOpen
       title={title}
       onCancel={onCancel ? onLocalCancel : undefined}
       onConfirm={onConfirm ? onLocalConfirm : undefined}
+      onClose={onClose ? onLocalClose : undefined}
     >
       {children}
     </Modal>

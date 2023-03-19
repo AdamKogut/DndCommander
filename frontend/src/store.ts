@@ -2,29 +2,30 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
-import { PlayerSlice } from "./services/Players";
+import { PlayerSlice, playerPersistListener } from "./services/Players";
 import { SideBarSlice } from "./services/SideBar";
-import { EquipmentSlice } from "./services/Equipment";
+import { EquipmentSlice, equipmentPersistListener } from "./services/Equipment";
+import { CampaignsSlice, campaignListener } from "./services/Campaigns";
 
-const persistHealthConfig = {
-  key: 'player-health',
+const persistCampaign = {
+  key: 'campaign',
   storage
 };
 
-const persistEquipmentConfig = {
-  key: 'equipment',
-  storage
-};
-
-const persistedPlayerSlice = persistReducer(persistHealthConfig, PlayerSlice.reducer);
-const persistedEquipmentSlice = persistReducer(persistEquipmentConfig, EquipmentSlice.reducer);
+const persistedCampaignSlice = persistReducer(persistCampaign, CampaignsSlice.reducer);
 
 export const store = configureStore({
   reducer: {
-    [PlayerSlice.name]: persistedPlayerSlice,
+    [PlayerSlice.name]: PlayerSlice.reducer,
     [SideBarSlice.name]: SideBarSlice.reducer,
-    [EquipmentSlice.name]: persistedEquipmentSlice
-  }
+    [EquipmentSlice.name]: EquipmentSlice.reducer,
+    [CampaignsSlice.name]: persistedCampaignSlice
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware()
+      .prepend(campaignListener.middleware)
+      .prepend(playerPersistListener.middleware)
+      .prepend(equipmentPersistListener.middleware)
 });
 
 export const persistor = persistStore(store);
