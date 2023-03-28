@@ -10,7 +10,7 @@ function Equipment() {
   const { create, destroy } = useModal();
 
   return (
-    <div className={clsx('flex h-[calc(100%-60px)] flex-col overflow-y-auto overflow-x-hidden p-4 sm:ml-64')}>
+    <div className={clsx('flex h-[calc(100%-60px)] flex-col overflow-y-auto overflow-x-hidden p-4')}>
       <div className='flex flex-row place-content-between space-x-4 pb-6'>
         <h2 className='text-3xl'>Equipment</h2>
       </div>

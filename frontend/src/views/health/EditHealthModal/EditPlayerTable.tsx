@@ -42,7 +42,7 @@ function EditPlayerTable({
 
   return (
     <div className='h-full max-h-full min-w-[34%]'>
-      <button className='btn-primary my-4 ml-4 mr-20' onClick={addPlayer}>Add Player</button>
+      <button className='secondary-coloring my-4 ml-4 mr-20' onClick={addPlayer}>Add Player</button>
       <div className='h-[calc(100%-127px)] overflow-y-auto'>
         <table className={'w-[100%] table-fixed'}>
           <thead>
@@ -59,8 +59,8 @@ function EditPlayerTable({
         </table>
       </div>
       <div className='bg-slate-200 pb-1 text-right'>
-        <button className='btn-primary mt-4 mr-4 py-1' onClick={cancel}>Cancel</button>
-        <button className='btn-primary mt-4 mr-4 py-1' onClick={() => saveEdit(playerList)}>Save</button>
+        <button className='secondary-coloring mt-4 mr-4 py-1' onClick={cancel}>Cancel</button>
+        <button className='secondary-coloring mt-4 mr-4 py-1' onClick={() => saveEdit(playerList)}>Save</button>
       </div>
     </div>
   );

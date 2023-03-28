@@ -31,7 +31,7 @@ function Campaigns() {
       <div className='flex flex-row place-content-between space-x-4 pb-6'>
         <h2 className='text-3xl'>Campaigns</h2>
         <div className='flex flex-row place-content-end space-x-4'>
-          <button className="btn-primary" onClick={() => dispatch(addCampaign())}>Add Campaign</button>
+          <button className="secondary-coloring" onClick={() => dispatch(addCampaign())}>Add Campaign</button>
         </div>
       </div>
       <table className={'mx-2 w-[calc(100%-16px)] table-fixed border-2'}>

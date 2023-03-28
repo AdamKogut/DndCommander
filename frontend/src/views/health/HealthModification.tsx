@@ -14,7 +14,7 @@ function HealthModification({ applyModification, applyTempModification }: Health
       <div className='flex flex-row  place-content-between pt-6 lg:w-[500px]'>
         {modificationValues.map((value: number) => {
           const stringValue = value > 0 ? `+${value}` : value;
-          return <button key={value} className='btn-primary px-3' onClick={() => applyModification(value)}>{stringValue}</button>;
+          return <button key={value} className='secondary-coloring px-3' onClick={() => applyModification(value)}>{stringValue}</button>;
         })}
       </div>
       <div className='flex flex-row gap-x-4 pt-6'>
@@ -22,13 +22,13 @@ function HealthModification({ applyModification, applyTempModification }: Health
           return (
             <button
               key={value}
-              className='btn-primary'
+              className='secondary-coloring'
               onClick={() => applyTempModification(value)}>
               {`+${value} Temp HP`}
             </button>
           );
         })}
-        <button key={'max'} className='btn-primary' onClick={() => applyModification(0)}>Max HP</button>
+        <button key={'max'} className='secondary-coloring' onClick={() => applyModification(0)}>Max HP</button>
       </div>
     </Fragment>
   )

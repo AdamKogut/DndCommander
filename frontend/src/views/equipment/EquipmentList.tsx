@@ -25,7 +25,7 @@ function EquipmentList() {
               </div>
             );
           })}
-          <button className='btn-primary h-14' onClick={() => dispatch(addEquipmentItem())}>Add Equipment Item</button>
+          <button className='secondary-coloring h-14' onClick={() => dispatch(addEquipmentItem())}>Add Equipment Item</button>
         </div>
       </div>
     </div>

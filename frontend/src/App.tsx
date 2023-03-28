@@ -15,7 +15,7 @@ function App() {
   }, []);
 
   return (
-    <div className='h-full w-full overflow-y-auto overflow-x-hidden'>
+    <div className='primary-coloring h-full w-full overflow-y-auto overflow-x-hidden'>
       <TopBar />
       <SideBar />
       <Routes>

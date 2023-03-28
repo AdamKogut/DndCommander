@@ -56,14 +56,14 @@ function CampaignRow({ campaign, currentCampaign }: CampaignRowProps) {
           onChange={updateName} />
         <div className='mt-4 flex w-full justify-between'>
           <button
-            className={clsx('btn-primary w-[99px]', isButtonDisabled && 'opacity-30')}
+            className={clsx('secondary-coloring w-[99px]', isButtonDisabled && 'opacity-30')}
             disabled={isButtonDisabled}
             onClick={() => dispatch(changeCampaign(campaign.id))}
           >
             Select
           </button>
           <button
-            className={clsx('btn-primary w-[99px] bg-red-500', isButtonDisabled && 'opacity-30')}
+            className={clsx('secondary-coloring w-[99px] bg-red-500', isButtonDisabled && 'opacity-30')}
             disabled={isButtonDisabled}
             onClick={() => dispatch(removeCampaign(campaign.id))}
           >

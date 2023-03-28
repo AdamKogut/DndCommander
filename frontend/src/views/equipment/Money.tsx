@@ -39,7 +39,7 @@ function Money() {
               </div>
             );
           })}
-          <button className='btn-primary h-14' onClick={openEditModal}>Edit Money Types</button>
+          <button className='secondary-coloring h-14' onClick={openEditModal}>Edit Money Types</button>
         </div>
       </div>
     </div>

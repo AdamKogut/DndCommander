@@ -18,14 +18,14 @@ function TopBar() {
   }
 
   return (
-    <div className="sticky top-0 flex h-[60px] w-full flex-row place-content-between bg-slate-200">
+    <div className="primary-coloring-dark sticky top-0 flex h-[60px] w-full flex-row place-content-between">
       {/* hamburger button */}
       <button
         data-drawer-target="default-sidebar"
         data-drawer-toggle="default-sidebar"
         aria-controls="default-sidebar"
         type="button"
-        className="ml-4 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 focus:bg-transparent focus:outline-none focus:ring-2 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:invisible"
+        className="ml-4 inline-flex items-center rounded-lg p-2 text-sm focus:bg-transparent focus:outline-none focus:ring-2 sm:invisible"
         onClick={() => dispatch(toggleSideBar())}
       >
         <span className="sr-only">Open sidebar</span>

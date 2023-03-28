@@ -3,9 +3,23 @@
 @tailwind utilities;
 
 @layer components {
-  .btn-primary {
-    /* TODO: choose colors*/
-    @apply bg-blue-400 text-white;
+  .primary-coloring-light {
+    @apply bg-primary-light text-secondary-dark dark:bg-secondary-dark dark:text-primary-light
+  }
+  .primary-coloring {
+    @apply bg-primary text-secondary dark:bg-secondary dark:text-primary
+  }
+  .primary-coloring-dark {
+    @apply bg-primary-dark text-secondary-light dark:bg-secondary-light dark:text-primary-dark
+  }
+  .secondary-coloring-light {
+    @apply bg-tertiary-light text-primary-dark dark:bg-primary-dark dark:text-tertiary-light
+  }
+  .secondary-coloring {
+    @apply bg-tertiary text-primary dark:bg-primary dark:text-tertiary
+  }
+  .secondary-coloring-dark {
+    @apply bg-tertiary-dark text-primary-light dark:bg-primary-light dark:text-tertiary-dark
   }
 }
 

@@ -11,7 +11,7 @@ function CloseSideBar() {
         data-drawer-toggle="default-sidebar"
         aria-controls="default-sidebar"
         type="button"
-        className="ml-4 mt-[-16px] inline-flex items-center rounded-lg p-2 text-sm text-gray-500 focus:bg-transparent focus:outline-none focus:ring-2 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 sm:hidden"
+        className="ml-4 mt-[-16px] inline-flex items-center rounded-lg p-2 text-sm focus:bg-transparent focus:outline-none focus:ring-2 sm:hidden"
         onClick={() => dispatch(toggleSideBar())}
       >
         <span className="sr-only">Open sidebar</span>

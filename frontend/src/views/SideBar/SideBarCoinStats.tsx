@@ -6,10 +6,10 @@ function ViewCoin() {
 
   return (
     <Fragment>
-      <button className="mb-2 w-full p-2">
+      <button className="secondary-coloring mb-2 w-full p-2">
         View Stats
       </button>
-      <button className="mb-2 w-full p-2">
+      <button className="secondary-coloring mb-2 w-full p-2">
         View Coin
       </button>
     </Fragment>
