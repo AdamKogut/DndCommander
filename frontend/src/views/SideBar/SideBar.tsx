@@ -23,7 +23,7 @@ function SideBar() {
         <div className='grow'>
           <CloseSideBar />
           <ul className="space-y-2">
-            {AvailableLinks.map((value: SideBarItemProps) => <LinkItem key={value.displayText} {...value} />)}
+            {AvailableLinks.map((value: SideBarItemProps) => <ul key={value.displayText}><LinkItem {...value} /></ul>)}
           </ul>
         </div>
         <ViewCoin />

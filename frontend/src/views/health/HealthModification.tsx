@@ -11,6 +11,9 @@ function HealthModification({ applyModification, applyTempModification }: Health
 
   return (
     <Fragment>
+      {/* Have two buttons, one that says heal and other says damage (blue/red) then 
+        once user clicks on it it brings up a sub menu with +/- 1/5/10 and temp health, it only disappears when user
+        clicks away */}
       <div className='flex flex-row  place-content-between pt-6 lg:w-[500px]'>
         {modificationValues.map((value: number) => {
           const stringValue = value > 0 ? `+${value}` : value;

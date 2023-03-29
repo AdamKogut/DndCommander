@@ -7,6 +7,7 @@ import { ReactComponent as HomeIcon } from '../Images/HomeIcon.svg';
 import { ReactComponent as SpellIcon } from '../Images/OpenBookIcon.svg';
 import { ReactComponent as EquipmentIcon } from '../Images/BackpackIcon.svg';
 import { ReactComponent as CombatIcon } from '../Images/SwordIcon.svg';
+import clsx from 'clsx';
 
 export const AvailableLinks: SideBarItemProps[] = [
   {
@@ -46,11 +47,10 @@ export function LinkItem({ displayText, linkTarget, VisibleIcon }: SideBarItemPr
   }
 
   return (
-    <li>
-      <button onClick={handleClick} className="secondary-coloring flex w-full items-center rounded-lg p-2 text-base font-normal">
-        <VisibleIcon aria-hidden="true" className="h-8 w-8 transition duration-75 "/>
-        <span className="ml-3">{displayText}</span>
-      </button>
-    </li>
+    <button onClick={handleClick} className={clsx("secondary-coloring sm:hover:bg-tertiary sm:hover:text-primary flex w-full items-center rounded-lg p-2 text-base font-normal sm:w-[15vw] sm:justify-center sm:rounded-b-none sm:bg-transparent sm:text-black md:w-[18vw]",
+      window.location.pathname===linkTarget && "sm:bg-tertiary sm:text-primary")}>
+      <VisibleIcon aria-hidden="true" className="h-8 w-8 transition duration-75"/>
+      <span className="ml-3 sm:hidden md:inline">{displayText}</span>
+    </button>
   )
 }

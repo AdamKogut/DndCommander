@@ -13,10 +13,16 @@ function PlayerTable({ players, selectPlayer }: PlayerTableProps) {
       <table className={'w-[100%] table-fixed'}>
         <thead>
           <tr>
-            <th className='break-words border-y-2 border-l-2'>Name</th>
-            <th className='w-14 border-y-2 md:w-16'>Max</th>
-            <th className='w-16 border-y-2 md:w-20'>Current</th>
-            <th className='w-12 border-y-2 md:w-14 lg:w-20'>Temp HP</th>
+            <th className='break-words border-y-2 border-l-2 text-left'>Name</th>
+            <th className='w-44 border-y-2 text-left md:w-48 lg:w-52'>
+              <div className='flex justify-around'>
+                <div>Max</div>
+                <div>/</div>
+                <div>Current</div>
+                <div>/</div>
+                <div>Temp</div>
+              </div>
+            </th>
             <th className='w-9 border-y-2 border-r-2 md:w-12 lg:w-14'></th>
           </tr>
         </thead>
