@@ -46,9 +46,18 @@ export function LinkItem({ displayText, linkTarget, VisibleIcon }: SideBarItemPr
     navigate(linkTarget);
   }
 
+  const isCurrentTab = window.location.pathname === linkTarget;
+
   return (
-    <button onClick={handleClick} className={clsx("secondary-coloring sm:hover:bg-tertiary sm:hover:text-primary flex w-full items-center rounded-lg p-2 text-base font-normal sm:w-[15vw] sm:justify-center sm:rounded-b-none sm:bg-transparent sm:text-black md:w-[18vw]",
-      window.location.pathname===linkTarget && "sm:bg-tertiary sm:text-primary")}>
+    <button
+      onClick={handleClick}
+      className={clsx("secondary-coloring flex w-full items-center p-2 text-base font-normal",
+        "sm:hover:bg-tertiary sm:hover:text-primary sm:w-[15vw] sm:justify-center sm:rounded-b-none",
+        "md:w-[18vw]",
+        !isCurrentTab && "sm:text-tertiary sm:bg-transparent")}
+      // className={clsx("-b-none sm:bg-transparent sm:text-tertiary md:w-[18vw]",
+      //   window.location.pathname === linkTarget && "sm:bg-tertiary sm:text-primary")}
+    >
       <VisibleIcon aria-hidden="true" className="h-8 w-8 transition duration-75"/>
       <span className="ml-3 sm:hidden md:inline">{displayText}</span>
     </button>

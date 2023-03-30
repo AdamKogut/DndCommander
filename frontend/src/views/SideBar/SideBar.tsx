@@ -3,7 +3,6 @@ import { useAppSelector } from 'src/store';
 import { SideBarItemProps } from 'src/types/sideBar';
 import { LinkItem, AvailableLinks } from 'src/components/Links';
 import CloseSideBar from './CloseSideBar';
-import ViewCoin from './SideBarCoinStats';
 
 function SideBar() {
   const { SideBarOpen } = useAppSelector((store) => store.SideBar);
@@ -26,7 +25,6 @@ function SideBar() {
             {AvailableLinks.map((value: SideBarItemProps) => <ul key={value.displayText}><LinkItem {...value} /></ul>)}
           </ul>
         </div>
-        <ViewCoin />
       </div>
     </aside>
   )
