@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { changeCampaign } from './services/Campaigns';
-import { store, useAppDispatch, useAppSelector } from './store';
+import { useAppDispatch, useAppSelector } from './store';
 import Equipment from './views/equipment/Equipment';
 import Health from './views/health/Health';
 import SideBar from './views/SideBar/SideBar';
@@ -12,6 +12,7 @@ function App() {
   const campaignInfo = useAppSelector((store) => store.Campaigns);
   useEffect(() => {
     appDispatch(changeCampaign(campaignInfo.currentCampaign));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

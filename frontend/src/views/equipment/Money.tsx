@@ -25,21 +25,23 @@ function Money() {
   return (
     <div className='mb-2 w-full overflow-x-hidden lg:ml-2 lg:w-[40%] xl:w-[25%] 2xl:w-[20%]'>
       <div className='w-full rounded border-2'>
-        <h2 className='px-4 pt-4 text-xl'>Money</h2>
+        <div className='flex flex-row place-content-between px-4 pt-4'>
+          <h2 className='text-xl'>Money</h2>
+          <button className='secondary-coloring' onClick={openEditModal}>Edit Money Types</button>
+        </div>
         <div className='flex flex-wrap gap-4 p-2'>
           {currentCoin.map((value: EquipmentItem) => {
             return (
               <div className='rounded border-2 p-2 drop-shadow-sm' key={value.Id}>
                 <span className='w-24 break-words'>{value.Name}:</span>
                 <input
-                  type='text'
+                  type='number'
                   className='m-2 w-16 border-2'
                   value={value.Amount}
                   onChange={(e: ChangeEvent<HTMLInputElement>) => dispatch(changeCoinAmount({ id: value.Id, amt: e.currentTarget.value}))} />
               </div>
             );
           })}
-          <button className='secondary-coloring h-14' onClick={openEditModal}>Edit Money Types</button>
         </div>
       </div>
     </div>

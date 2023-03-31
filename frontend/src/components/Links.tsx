@@ -2,12 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { toggleSideBar } from "src/services/SideBar";
 import { useAppDispatch } from "src/store";
 import { SideBarItemProps } from '../types/sideBar';
-import { ReactComponent as HealthIcon } from '../Images/HealthIcon.svg';
-import { ReactComponent as HomeIcon } from '../Images/HomeIcon.svg';
-import { ReactComponent as SpellIcon } from '../Images/OpenBookIcon.svg';
-import { ReactComponent as EquipmentIcon } from '../Images/BackpackIcon.svg';
-import { ReactComponent as CombatIcon } from '../Images/SwordIcon.svg';
-import clsx from 'clsx';
+import { HealthIcon, HomeIcon, OpenBookIcon, BackpackIcon, SwordIcon } from './Icons';
+import { clsx } from 'clsx';
 
 export const AvailableLinks: SideBarItemProps[] = [
   {
@@ -23,17 +19,17 @@ export const AvailableLinks: SideBarItemProps[] = [
   {
     displayText: 'Combat',
     linkTarget: '/combat',
-    VisibleIcon: CombatIcon
+    VisibleIcon: SwordIcon
   },
   {
     displayText: 'Equipment',
     linkTarget: '/equipment',
-    VisibleIcon: EquipmentIcon
+    VisibleIcon: BackpackIcon
   },
   {
     displayText: 'Spells',
     linkTarget: '/spell',
-    VisibleIcon: SpellIcon
+    VisibleIcon: OpenBookIcon
   }
 ];
 

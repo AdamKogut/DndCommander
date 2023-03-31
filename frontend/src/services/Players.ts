@@ -61,7 +61,7 @@ export const playerPersistListener = createListenerMiddleware();
 
 playerPersistListener.startListening({
   matcher: isAnyOf(changePlayers, changePlayerSelection, changePlayerHealth, changePlayerTempHealth),
-  effect: (action, listenerApi) => {
+  effect: (_, listenerApi) => {
     const { Player } = listenerApi.getState() as { Player: PlayerSliceState };
     
     listenerApi.dispatch(changeSavedPlayers(Player));

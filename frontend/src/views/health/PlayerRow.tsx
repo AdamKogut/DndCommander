@@ -1,8 +1,7 @@
 import { Fragment } from 'react';
 import { clsx } from 'clsx';
 import { PlayerHealth } from 'src/types/players';
-import ErrorSign from '../../Images/error-sign.svg';
-import WarningSign from '../../Images/warning-sign.svg';
+import { ErrorIcon, WarningIcon } from 'src/components/Icons';
 
 type PlayerTableProps = {
   player: PlayerHealth;
@@ -22,8 +21,8 @@ function PlayerRow({ player }: PlayerTableProps) {
         <div>{player.TempHp}</div>
       </td>
       <td className='w-10'>
-        <img className={clsx(!isError && 'hidden', 'w-9')} src={ErrorSign} alt='Error Icon'/>
-        <img className={clsx(!isWarning && 'hidden', 'w-9')} src={WarningSign} alt='warning Icon'/>
+        <ErrorIcon className={clsx(!isError && 'hidden', 'w-9')} />
+        <WarningIcon className={clsx(!isWarning && 'hidden', 'w-9')} />
       </td>
     </Fragment>
   )

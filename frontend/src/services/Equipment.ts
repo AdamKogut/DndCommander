@@ -55,19 +55,33 @@ export const EquipmentSlice = createSlice({
       state.currentEquipment.push({
         Id: Date.now(),
         Name: '',
-        Amount: 0
+        Amount: 1
       })
+    },
+    removeEquipmentItem: (state, { payload }: PayloadAction<number>) => {
+      const foundEquipment = state.currentEquipment.findIndex((x => x.Id === payload));
+      if (foundEquipment !== -1)
+      {
+        state.currentEquipment.splice(foundEquipment, 1);
+      }
+    },
+    changeEquipmentItem: (state, { payload }: PayloadAction<EquipmentItem>) => {
+      const foundEquipment = state.currentEquipment.findIndex((x => x.Id === payload.Id));
+      if (foundEquipment !== -1)
+      {
+        state.currentEquipment.splice(foundEquipment, 1, payload);
+      }
     }
   }
 });
 
-export const { changeCoin, changeCoinAmount, changeEquipment, addEquipmentItem } = EquipmentSlice.actions;
+export const { changeCoin, changeCoinAmount, changeEquipment, addEquipmentItem, removeEquipmentItem, changeEquipmentItem } = EquipmentSlice.actions;
 
 export const equipmentPersistListener = createListenerMiddleware();
 
 equipmentPersistListener.startListening({
-  matcher: isAnyOf(changeCoin, changeCoinAmount, changeEquipment, addEquipmentItem),
-  effect: (action, listenerApi) => {
+  matcher: isAnyOf(changeCoin, changeCoinAmount, changeEquipment, addEquipmentItem, removeEquipmentItem, changeEquipmentItem),
+  effect: (_, listenerApi) => {
     const { Equipment } = listenerApi.getState() as { Equipment: EquipmentSliceState };
     
     listenerApi.dispatch(changeSavedEquipment(Equipment));
