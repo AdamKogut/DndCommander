@@ -201,3 +201,9 @@ export const PlusIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </g>
   </svg>
 );
+
+export const ChevronIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg width="800px" height="800px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none" {...props}>
+    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 7l6 6 6-6"/>
+  </svg>
+);

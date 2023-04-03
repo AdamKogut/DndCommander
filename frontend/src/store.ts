@@ -6,6 +6,7 @@ import { PlayerSlice, playerPersistListener } from "./services/Players";
 import { SideBarSlice } from "./services/SideBar";
 import { EquipmentSlice, equipmentPersistListener } from "./services/Equipment";
 import { CampaignsSlice, campaignListener } from "./services/Campaigns";
+import { spellPersistListener, SpellSlice } from "./services/Spells";
 
 const persistCampaign = {
   key: 'campaign',
@@ -19,13 +20,15 @@ export const store = configureStore({
     [PlayerSlice.name]: PlayerSlice.reducer,
     [SideBarSlice.name]: SideBarSlice.reducer,
     [EquipmentSlice.name]: EquipmentSlice.reducer,
-    [CampaignsSlice.name]: persistedCampaignSlice
+    [CampaignsSlice.name]: persistedCampaignSlice,
+    [SpellSlice.name]: SpellSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .prepend(campaignListener.middleware)
       .prepend(playerPersistListener.middleware)
       .prepend(equipmentPersistListener.middleware)
+      .prepend(spellPersistListener.middleware)
 });
 
 export const persistor = persistStore(store);

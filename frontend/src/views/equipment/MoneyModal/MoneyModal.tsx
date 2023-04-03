@@ -11,14 +11,14 @@ type MoneyModalProps = {
 
 function MoneyModal({ moneyList, saveEdit, cancel }: MoneyModalProps) {
   const [tempMoneyList, setTempMoneyList] = useState(JSON.parse(JSON.stringify(moneyList)));
-  const moneyListIds = useMemo(() => tempMoneyList.map(({ Id }: EquipmentItem) => Id), [tempMoneyList]);
+  const moneyListIds = useMemo(() => tempMoneyList.map(({ id }: EquipmentItem) => id), [tempMoneyList]);
 
   const addMoney = (e: MouseEvent<HTMLButtonElement>) => {
     const pl = [...tempMoneyList];
     pl.push({
-      Id: Date.now(),
-      Name: '',
-      Amount:0
+      id: Date.now(),
+      name: '',
+      amount:0
     });
     setTempMoneyList(pl);
     e.stopPropagation();
@@ -33,7 +33,7 @@ function MoneyModal({ moneyList, saveEdit, cancel }: MoneyModalProps) {
     const foundMoney = pl.find((x => x.Id === id));
     if (foundMoney)
     {
-      foundMoney.Name = name;
+      foundMoney.name = name;
     }
 
     setTempMoneyList(pl);

@@ -29,7 +29,7 @@ function EditMoneyTable({
   const rows = MoneyList.map((value: EquipmentItem) => {
     return (
       <EditMoneyRow
-        key={value.Id}
+        key={value.id}
         Money={value}
         deleteMoney={deleteMoney}
         changeName={changeName}

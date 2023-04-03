@@ -20,7 +20,7 @@ function EditMoneyRow({ Money, deleteMoney, changeName }: MoneyTableProps) {
     setNodeRef,
     isDragging
   } = useSortable({
-    id: Money.Id
+    id: Money.id
   });
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -30,7 +30,7 @@ function EditMoneyRow({ Money, deleteMoney, changeName }: MoneyTableProps) {
   return (
     <tr
       ref={setNodeRef}
-      key={Money.Id}
+      key={Money.id}
       className={clsx('h-12 border-y-2 bg-white', isDragging && 'invisible')}
       style={style}
     >
@@ -38,10 +38,10 @@ function EditMoneyRow({ Money, deleteMoney, changeName }: MoneyTableProps) {
         <img className='h-8 w-8' src={DragDrop} alt='Drag and drop icon' />
       </td>
       <td className='px-2'>
-        <input className='w-[100%] border-2 px-2' type="text" value={Money.Name} onChange={(e: ChangeEvent<HTMLInputElement>) => changeName(Money.Id, e.currentTarget.value)} />
+        <input className='w-[100%] border-2 px-2' type="text" value={Money.name} onChange={(e: ChangeEvent<HTMLInputElement>) => changeName(Money.id, e.currentTarget.value)} />
       </td>
       <td className='pr-2'>
-        <button className='w-[99px] bg-red-500' onClick={() => deleteMoney(Money.Id)}>Delete</button>
+        <button className='w-[99px] bg-red-500' onClick={() => deleteMoney(Money.id)}>Delete</button>
       </td>
     </tr>
   );

@@ -32,13 +32,13 @@ function Money() {
         <div className='flex flex-wrap gap-4 p-2'>
           {currentCoin.map((value: EquipmentItem) => {
             return (
-              <div className='rounded border-2 p-2 drop-shadow-sm' key={value.Id}>
-                <span className='w-24 break-words'>{value.Name}:</span>
+              <div className='rounded border-2 p-2 drop-shadow-sm' key={value.id}>
+                <span className='w-24 break-words'>{value.name}:</span>
                 <input
                   type='number'
                   className='m-2 w-16 border-2'
-                  value={value.Amount}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => dispatch(changeCoinAmount({ id: value.Id, amt: e.currentTarget.value}))} />
+                  value={value.amount}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => dispatch(changeCoinAmount({ id: value.id, amt: e.currentTarget.value}))} />
               </div>
             );
           })}

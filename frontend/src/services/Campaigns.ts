@@ -6,6 +6,8 @@ import { changeCoin, changeEquipment } from './Equipment';
 import { PlayerSliceState } from 'src/types/players';
 import { EquipmentSliceState } from 'src/types/equipment';
 import { arrayMove } from '@dnd-kit/sortable';
+import { changeSpells } from './Spells';
+import { SpellSliceState } from 'src/types/spells';
 
 type ChangeCampaignNameType = {
   id: number;
@@ -25,25 +27,28 @@ const initialState: CampaignsSliceState = {
       equipment: {
         currentCoin: [
           {
-            Id: 1,
-            Name: 'Copper',
-            Amount: 0
+            id: 1,
+            name: 'Copper',
+            amount: 0
           },
           {
-            Id: 2,
-            Name: 'Silver',
-            Amount: 0
+            id: 2,
+            name: 'Silver',
+            amount: 0
           },
           {
-            Id: 3,
-            Name: 'Gold',
-            Amount: 0
+            id: 3,
+            name: 'Gold',
+            amount: 0
           },
         ],
         currentEquipment: []
       },
       players: {
         players: []
+      },
+      spells: {
+        spells: []
       }
     }
   ],
@@ -79,6 +84,15 @@ export const CampaignsSlice = createSlice({
 
       currentCampaignItem.equipment = payload;
     },
+    changeSavedSpells: (state, { payload }: PayloadAction<SpellSliceState>) => {
+      const currentCampaignItem = state.campaigns.find(x => x.id == state.currentCampaign);
+      if (currentCampaignItem === undefined)
+      {
+        return;
+      }
+
+      currentCampaignItem.spells = payload;
+    },
     addCampaign: (state) => {
       state.campaigns.push({
         ...initialState.campaigns[0],
@@ -105,7 +119,7 @@ export const CampaignsSlice = createSlice({
   }
 });
 
-export const { changeCampaign, changeSavedEquipment, changeSavedPlayers, addCampaign, removeCampaign, updateCampaignName, changeCampaignOrder } = CampaignsSlice.actions;
+export const { changeCampaign, changeSavedEquipment, changeSavedPlayers, addCampaign, removeCampaign, updateCampaignName, changeCampaignOrder, changeSavedSpells } = CampaignsSlice.actions;
 
 export const campaignListener = createListenerMiddleware();
 
@@ -122,5 +136,6 @@ campaignListener.startListening({
     listenerApi.dispatch(changePlayers(campaignInfo.players.players));
     listenerApi.dispatch(changeCoin(campaignInfo.equipment.currentCoin));
     listenerApi.dispatch(changeEquipment(campaignInfo.equipment.currentEquipment));
+    listenerApi.dispatch(changeSpells(campaignInfo.spells.spells));
   }
 })

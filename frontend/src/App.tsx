@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from './store';
 import Equipment from './views/equipment/Equipment';
 import Health from './views/health/Health';
 import SideBar from './views/SideBar/SideBar';
+import Spells from './views/spells/Spells';
 import TopBar from './views/TopBar/TopBar';
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
       <SideBar />
       <Routes>
         <Route path="health" element={<Health />} />
-        <Route path='equipment' element={<Equipment />}/>
+        <Route path='equipment' element={<Equipment />} />
+        <Route path='spell' element={<Spells />} />
       </Routes>
     </div>
   )

@@ -10,19 +10,19 @@ type ChangeCoinAmountType = {
 const initialState: EquipmentSliceState = {
   currentCoin: [
     {
-      Id: 1,
-      Name: 'Copper',
-      Amount: 0
+      id: 1,
+      name: 'Copper',
+      amount: 0
     },
     {
-      Id: 2,
-      Name: 'Silver',
-      Amount: 0
+      id: 2,
+      name: 'Silver',
+      amount: 0
     },
     {
-      Id: 3,
-      Name: 'Gold',
-      Amount: 0
+      id: 3,
+      name: 'Gold',
+      amount: 0
     },
   ],
   currentEquipment: []
@@ -42,10 +42,10 @@ export const EquipmentSlice = createSlice({
         return;
       }
 
-      const foundCoin = state.currentCoin.find(x => x.Id == payload.id);
+      const foundCoin = state.currentCoin.find(x => x.id == payload.id);
       if (foundCoin)
       {
-        foundCoin.Amount = amt;
+        foundCoin.amount = amt;
       }
     },
     changeEquipment: (state, { payload }: PayloadAction<EquipmentItem[]>) => {
@@ -53,20 +53,20 @@ export const EquipmentSlice = createSlice({
     },
     addEquipmentItem: (state) => {
       state.currentEquipment.push({
-        Id: Date.now(),
-        Name: '',
-        Amount: 1
+        id: Date.now(),
+        name: '',
+        amount: 1
       })
     },
     removeEquipmentItem: (state, { payload }: PayloadAction<number>) => {
-      const foundEquipment = state.currentEquipment.findIndex((x => x.Id === payload));
+      const foundEquipment = state.currentEquipment.findIndex((x => x.id === payload));
       if (foundEquipment !== -1)
       {
         state.currentEquipment.splice(foundEquipment, 1);
       }
     },
     changeEquipmentItem: (state, { payload }: PayloadAction<EquipmentItem>) => {
-      const foundEquipment = state.currentEquipment.findIndex((x => x.Id === payload.Id));
+      const foundEquipment = state.currentEquipment.findIndex((x => x.id === payload.id));
       if (foundEquipment !== -1)
       {
         state.currentEquipment.splice(foundEquipment, 1, payload);
