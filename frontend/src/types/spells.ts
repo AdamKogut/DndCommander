@@ -2,14 +2,14 @@ export type SpellInformation = {
   id: number;
   name: string;
   components: string;
-  spellLevel: number;
+  spellLevel: string;
   castingTime: string;
   duration: string;
   rangeArea: string;
   damage: string;
   attackSave: string;
   description: string;
-  tags: string;
+  tags: string[];
   prepared: boolean;
 }
 

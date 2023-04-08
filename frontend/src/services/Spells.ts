@@ -11,15 +11,26 @@ export const SpellSlice = createSlice({
     changeSpells: (state, { payload }: PayloadAction<SpellInformation[]>) => {
       state.spells = payload;
     },
+    updateSpell: (state, { payload }: PayloadAction<SpellInformation>) => {
+      const spellIndex = state.spells.findIndex(x => x.id === payload.id);
+      if (spellIndex !== -1)
+      {
+        state.spells.push(payload);
+      }
+      else
+      {
+        state.spells.splice(spellIndex, 1, payload);
+      }
+    }
   }
 });
 
-export const { changeSpells } = SpellSlice.actions;
+export const { changeSpells, updateSpell } = SpellSlice.actions;
 
 export const spellPersistListener = createListenerMiddleware();
 
 spellPersistListener.startListening({
-  matcher: isAnyOf(changeSpells),
+  matcher: isAnyOf(changeSpells, updateSpell),
   effect: (_, listenerApi) => {
     const { Spell } = listenerApi.getState() as { Spell: SpellSliceState };
     
