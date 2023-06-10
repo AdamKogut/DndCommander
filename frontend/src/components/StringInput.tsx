@@ -7,9 +7,10 @@ type StringInputProps = {
   labelClassnameOverride?: string;
   parentClassnameOverride?: string;
   inputOnChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }
 
-function StringInput({ placeholder, value, inputClassnameOverride, inputOnChange, labelClassnameOverride, parentClassnameOverride }: StringInputProps) {
+function StringInput({ placeholder, value, inputClassnameOverride, inputOnChange, labelClassnameOverride, parentClassnameOverride, disabled }: StringInputProps) {
   const idPlaceholder = useMemo(() => placeholder.replace(/\s/g, ''), [placeholder]);
 
   return (
@@ -21,6 +22,8 @@ function StringInput({ placeholder, value, inputClassnameOverride, inputOnChange
         placeholder=" "
         value={value}
         onChange={inputOnChange}
+        size={value.length}
+        disabled={disabled ?? false}
       />
       <label
         htmlFor={`floating_${idPlaceholder}`}

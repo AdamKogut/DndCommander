@@ -13,7 +13,7 @@ export const SpellSlice = createSlice({
     },
     updateSpell: (state, { payload }: PayloadAction<SpellInformation>) => {
       const spellIndex = state.spells.findIndex(x => x.id === payload.id);
-      if (spellIndex !== -1)
+      if (spellIndex === -1)
       {
         state.spells.push(payload);
       }
@@ -21,16 +21,23 @@ export const SpellSlice = createSlice({
       {
         state.spells.splice(spellIndex, 1, payload);
       }
+    },
+    deleteSpell: (state, { payload }: PayloadAction<number>) => {
+      const spellIndex = state.spells.findIndex(x => x.id === payload);
+      if (spellIndex !== -1)
+      {
+        state.spells.splice(spellIndex, 1);
+      }
     }
   }
 });
 
-export const { changeSpells, updateSpell } = SpellSlice.actions;
+export const { changeSpells, updateSpell, deleteSpell } = SpellSlice.actions;
 
 export const spellPersistListener = createListenerMiddleware();
 
 spellPersistListener.startListening({
-  matcher: isAnyOf(changeSpells, updateSpell),
+  matcher: isAnyOf(changeSpells, updateSpell, deleteSpell),
   effect: (_, listenerApi) => {
     const { Spell } = listenerApi.getState() as { Spell: SpellSliceState };
     

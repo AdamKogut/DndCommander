@@ -58,7 +58,7 @@ function EquipmentItemView({ item, updateAmount, updateName, deleteItem }: Equip
         </td>
         <td className='w-16'>
           <button className='border-transparent bg-transparent p-2' onClick={() => setIsOpen(!isOpen)}>
-            <ChevronIcon className={clsx('h-6 w-8 rotate-90', isOpen && "rotate-0")} />
+            <ChevronIcon className={clsx('h-6 w-8 rotate-90', isOpen && "!rotate-0")} />
           </button>
         </td>
       </tr>

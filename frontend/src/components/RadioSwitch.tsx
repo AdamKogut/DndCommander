@@ -9,12 +9,12 @@ type RadioSwitchProps = {
   switchBackgroundCssOverride?: string;
   switchDotCssOverride?: string;
   labelCssOverride?: string;
+  parentOverride?: string;
 }
 
-function RadioSwitch({ isActive, setIsActive, label, switchBackgroundCssOverride, switchDotCssOverride, labelCssOverride }: RadioSwitchProps) {
-
+function RadioSwitch({ isActive, setIsActive, label, switchBackgroundCssOverride, switchDotCssOverride, labelCssOverride, parentOverride }: RadioSwitchProps) {
   return (
-    <Fragment>
+    <div className={`relative m-2 ${parentOverride}`}>
       <Switch
         checked={isActive}
         id="floating_prepared"
@@ -42,7 +42,7 @@ function RadioSwitch({ isActive, setIsActive, label, switchBackgroundCssOverride
       >
         {label}
       </label>
-    </Fragment>
+    </div>
   )
 }
 
