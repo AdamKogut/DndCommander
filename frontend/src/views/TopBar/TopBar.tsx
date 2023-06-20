@@ -1,46 +1,29 @@
-import { AccountIcon, HamburgerIcon } from 'src/components/Icons';
-import { AvailableLinks, LinkItem } from 'src/components/Links';
-import { useModal } from 'src/hooks/UseModal';
-import { toggleSideBar } from 'src/services/SideBar';
-import { useAppDispatch } from 'src/store';
-import { SideBarItemProps } from 'src/types/sideBar';
-import Account from './Account/Account';
+import { Fragment } from "react";
+import { useNavigate } from 'react-router-dom';
+import Capture from '../../Images/Capture.jpg';
+import { clsx } from "clsx";
 
 function TopBar() {
-  const { create } = useModal();
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const openAccount = () => {
-    create({
-      title: 'Account Info',
-      children: <Account />,
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      onClose: () => { }
-    });
+  const buttonStyle = (buttonText: string) => {
+    return clsx("border-0 bg-transparent hover:text-sky-500",
+      window.location.pathname.endsWith(buttonText) && "text-sky-500 underline decoration-4 underline-offset-8");
   }
 
   return (
-    <div className="primary-coloring-dark border-b-tertiary sticky top-0 flex h-[60px] w-full flex-row place-content-between border-b-2">
-      {/* hamburger button */}
-      <button
-        data-drawer-target="default-sidebar"
-        data-drawer-toggle="default-sidebar"
-        aria-controls="default-sidebar"
-        type="button"
-        className="ml-4 inline-flex items-center rounded-lg p-2 text-sm focus:bg-transparent focus:outline-none focus:ring-2 sm:hidden"
-        onClick={() => dispatch(toggleSideBar())}
-      >
-        <span className="sr-only">Open sidebar</span>
-        <HamburgerIcon className="h-[40px]"/>
-      </button>
-
-      <div className='hidden sm:flex'>
-        {AvailableLinks.map((value: SideBarItemProps) => <LinkItem key={value.linkTarget} {...value} />)}
+    <Fragment>
+      <img src={Capture} alt="Banner" className="h-24 w-full object-cover" />
+      <div className="sticky top-0 flex h-12 w-full justify-around bg-slate-300">
+        <button className={buttonStyle("/")} onClick={()=>navigate('/')}>Home</button>
+        <button className={buttonStyle("/campaigns")} onClick={()=>navigate('/campaigns')}>Campaigns</button>
+        <button className={buttonStyle("/combat")} onClick={()=>navigate('/combat')}>Combat</button>
+        <button className={buttonStyle("/abilities")} onClick={()=>navigate('/abilities')}>Abilities</button>
+        <button className={buttonStyle('/equipment')} onClick={()=>navigate('/equipment')}>Equipment</button>
+        <button className={buttonStyle('/spells')} onClick={()=>navigate('/spells')}>Spells</button>
+        <button className={buttonStyle("/custom")} onClick={()=>navigate('/custom')}>Custom Items</button>
       </div>
-
-      {/* account button */}
-      <AccountIcon className='mr-4 h-[60px] cursor-pointer' onClick={openAccount} />
-    </div>
+    </Fragment>
   )
 }
 

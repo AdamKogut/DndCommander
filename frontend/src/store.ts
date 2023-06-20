@@ -1,34 +1,44 @@
+// import { configureStore } from "@reduxjs/toolkit";
+// import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+// import storage from 'redux-persist/lib/storage';
+// import { persistReducer, persistStore } from 'redux-persist';
+// import { PlayerSlice, playerPersistListener } from "./services/Players";
+// import { SideBarSlice } from "./services/SideBar";
+// import { EquipmentSlice, equipmentPersistListener } from "./services/Equipment";
+// import { CampaignsSlice, campaignListener } from "./services/Campaigns";
+// import { spellPersistListener, SpellSlice } from "./services/Spells";
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
-import { PlayerSlice, playerPersistListener } from "./services/Players";
-import { SideBarSlice } from "./services/SideBar";
-import { EquipmentSlice, equipmentPersistListener } from "./services/Equipment";
-import { CampaignsSlice, campaignListener } from "./services/Campaigns";
-import { spellPersistListener, SpellSlice } from "./services/Spells";
+import { persistStore } from 'redux-persist';
+// import { PlayerSlice } from "./services/Players";
+// import { SideBarSlice } from "./services/SideBar";
+// import { EquipmentSlice } from "./services/Equipment";
+import { CampaignsSlice } from "./services/Campaigns";
+import { CharactersSlice } from "./services/Characters";
+// import { SpellSlice } from "./services/Spells";
 
-const persistCampaign = {
-  key: 'campaign',
-  storage
-};
+// const persistCampaign = {
+//   key: 'campaign',
+//   storage
+// };
 
-const persistedCampaignSlice = persistReducer(persistCampaign, CampaignsSlice.reducer);
+// const persistedCampaignSlice = persistReducer(persistCampaign, CampaignsSlice.reducer);
 
 export const store = configureStore({
   reducer: {
-    [PlayerSlice.name]: PlayerSlice.reducer,
-    [SideBarSlice.name]: SideBarSlice.reducer,
-    [EquipmentSlice.name]: EquipmentSlice.reducer,
-    [CampaignsSlice.name]: persistedCampaignSlice,
-    [SpellSlice.name]: SpellSlice.reducer
+    // [PlayerSlice.name]: PlayerSlice.reducer,
+    // [SideBarSlice.name]: SideBarSlice.reducer,
+    // [EquipmentSlice.name]: EquipmentSlice.reducer,
+    [CampaignsSlice.name]: CampaignsSlice.reducer,
+    [CharactersSlice.name]: CharactersSlice.reducer
+    // [SpellSlice.name]: SpellSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
-      .prepend(campaignListener.middleware)
-      .prepend(playerPersistListener.middleware)
-      .prepend(equipmentPersistListener.middleware)
-      .prepend(spellPersistListener.middleware)
+      // .prepend(campaignListener.middleware)
+      // .prepend(playerPersistListener.middleware)
+      // .prepend(equipmentPersistListener.middleware)
+      // .prepend(spellPersistListener.middleware)
 });
 
 export const persistor = persistStore(store);

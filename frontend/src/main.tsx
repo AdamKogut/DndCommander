@@ -10,13 +10,13 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <div className='fixed inset-0 h-full w-full'>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      {/* <PersistGate loading={null} persistor={persistor}> */}
         <Router>
           <ModalContextProvider>
             <App />
           </ModalContextProvider>
         </Router>
-      </PersistGate>
+      {/* </PersistGate> */}
     </Provider>
   </div>,
 )

@@ -1,16 +1,24 @@
-import { EquipmentSliceState } from "./equipment";
-import { PlayerSliceState } from "./players";
-import { SpellSliceState } from "./spells";
-
 export type Campaign = {
-  id: number;
-  name: string;
-  equipment: EquipmentSliceState;
-  players: PlayerSliceState;
-  spells: SpellSliceState;
+  Id: number;
+  Name: string;
+  Hidden: boolean;
+  Notes: string;
+  IsDm: boolean;
+  Characters: number[];
 }
 
 export type CampaignsSliceState = {
-  campaigns: Campaign[];
-  currentCampaign: number;
+  Campaigns: Campaign[];
+  CurrentCampaign: number;
+}
+
+export function GetNewCampaign() : Campaign {
+  return {
+    Id: Date.now(),
+    Name: '',
+    Hidden: false,
+    Notes: '',
+    IsDm: false,
+    Characters: []
+  };
 }
