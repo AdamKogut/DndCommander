@@ -14,7 +14,7 @@ function TopBar() {
   return (
     <Fragment>
       <img src={Capture} alt="Banner" className="h-24 w-full object-cover" />
-      <div className="sticky top-0 flex h-12 w-full justify-around bg-slate-300">
+      <div className="sticky top-0 z-10 flex h-12 w-full justify-around bg-slate-300">
         <button className={buttonStyle("/")} onClick={()=>navigate('/')}>Home</button>
         <button className={buttonStyle("/campaigns")} onClick={()=>navigate('/campaigns')}>Campaigns</button>
         <button className={buttonStyle("/combat")} onClick={()=>navigate('/combat')}>Combat</button>

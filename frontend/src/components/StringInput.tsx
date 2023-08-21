@@ -14,7 +14,7 @@ function StringInput({ placeholder, value, inputClassnameOverride, inputOnChange
   const idPlaceholder = useMemo(() => placeholder.replace(/\s/g, ''), [placeholder]);
 
   return (
-    <div className={`relative m-2 ${parentClassnameOverride}`}>
+    <div className={`relative z-0 m-2 ${parentClassnameOverride}`}>
       <input
         type="text"
         id={`floating_${idPlaceholder}`}

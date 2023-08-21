@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import CampaignList from "./CampaignList";
 import { useAppDispatch, useAppSelector } from "src/store";
 import { ChangeCampaign } from "src/services/Campaigns";
+import CampaignContent from "./CampaignContent";
 
 function Campaigns() {
   const { Campaigns, CurrentCampaign } = useAppSelector((state) => state.Campaigns);
@@ -19,16 +20,13 @@ function Campaigns() {
   }, [Campaigns, CurrentCampaign, viewingCampaign, dispatch]);
 
   return (
-    <div className="mx-auto grid min-h-[calc(100vh-9rem)] w-[80%] grid-cols-5 gap-x-2 bg-neutral-300">
-      <div className="col-span-1">
-        <CampaignList
-          Campaigns={Campaigns}
-          CurrentCampaign={CurrentCampaign}
-          SetViewingCampaign={setViewingCampaign}
-          ViewingCampaign={viewingCampaign}
-        />
-      </div>
-      <div className="col-span-4"></div>
+    <div className="mx-auto min-h-[calc(100vh-9rem)] w-[80%] bg-neutral-300">
+      <CampaignContent
+        Campaigns={Campaigns}
+        CurrentCampaign={CurrentCampaign}
+        SetViewingCampaign={setViewingCampaign}
+        ViewingCampaign={viewingCampaign}
+      />
     </div>
   )
 }

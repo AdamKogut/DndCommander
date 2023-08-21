@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Campaign, CampaignsSliceState, GetNewCampaign } from 'src/types/campaign';
+import { Campaign, CampaignsSliceState, GetNewCampaign, UpdateCampaignNoteType } from 'src/types/campaign';
 
 const initialState: CampaignsSliceState = {
   Campaigns: [],
@@ -34,13 +34,25 @@ export const CampaignsSlice = createSlice({
     },
     UpdateCampaignInfo: (state, { payload }: PayloadAction<Campaign>) => {
       const foundCampaign = state.Campaigns.findIndex(x => x.Id === payload.Id)
-      if (foundCampaign === undefined)
-      {
+      if (foundCampaign === -1) {
         return;
       }
-        state.Campaigns.splice(foundCampaign, 1, payload);
+      state.Campaigns.splice(foundCampaign, 1, payload);
+    },
+    UpdateCampaignNote: (state, { payload }: PayloadAction<UpdateCampaignNoteType>) => {
+      const foundCampaign = state.Campaigns.find(x => x.Id === payload.CampaignId)
+      if (foundCampaign === undefined) {
+        return;
+      }
+
+      const foundNote = foundCampaign.Notes.findIndex(x => x.Id === payload.Note.Id);
+      if (foundNote === -1) {
+        foundCampaign.Notes.push(payload.Note);
+      }
+
+      foundCampaign.Notes.splice(foundNote, 1, payload.Note);
     }
   }
 });
 
-export const { ChangeCampaign, AddCampaign, RemoveCampaign, UpdateCampaignInfo } = CampaignsSlice.actions;
+export const { ChangeCampaign, AddCampaign, RemoveCampaign, UpdateCampaignInfo, UpdateCampaignNote } = CampaignsSlice.actions;

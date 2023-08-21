@@ -44,7 +44,7 @@ function TagInput({ placeholder, value, inputClassnameOverride, inputOnChange, l
   }
 
   return (
-    <div className={`relative m-2 ${parentClassnameOverride}`}>
+    <div className={`relative z-0 m-2 ${parentClassnameOverride}`}>
       <div className='flex flex-wrap gap-2 align-middle'>
         {!disabled && <input
           onKeyDown={handleKeyDown}

@@ -14,7 +14,7 @@ type RadioSwitchProps = {
 
 function RadioSwitch({ isActive, setIsActive, label, switchBackgroundCssOverride, switchDotCssOverride, labelCssOverride, parentOverride }: RadioSwitchProps) {
   return (
-    <div className={`relative m-2 ${parentOverride}`}>
+    <div className={`relative z-0 m-2 ${parentOverride}`}>
       <Switch
         checked={isActive}
         id="floating_prepared"
