@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { toggleSideBar } from "src/services/SideBar";
 import { useAppDispatch } from "src/store";
-import { SideBarItemProps } from '../types/sideBar';
+import { SideBarItemProps } from '../Types/sideBar';
 import { HealthIcon, HomeIcon, OpenBookIcon, BackpackIcon, SwordIcon } from './Icons';
 import { clsx } from 'clsx';
 

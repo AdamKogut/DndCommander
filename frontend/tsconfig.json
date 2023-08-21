@@ -16,7 +16,7 @@
         "src/*"
       ],
       "@components/*": [
-        "src/components/*"
+        "src/Components/*"
       ],
       "@slices/*": [
         "src/slices/*"
@@ -31,7 +31,7 @@
         "src/workers/*"
       ],
       "@services/*": [
-        "src/services/*"
+        "src/Services/*"
       ],
       "@utils/*": [
         "src/utils/*"

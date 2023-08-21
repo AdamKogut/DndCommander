@@ -5,8 +5,9 @@ export type PlayerHealth = {
   Current: number;
   IsSelected: boolean;
   TempHp: number;
+  TempMaxHp: number;
 }
 
-export type PlayerSliceState = {
-  players: PlayerHealth[]
+export type PlayersSliceState = {
+  Players: PlayerHealth[]
 }
