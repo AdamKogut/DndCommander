@@ -52,7 +52,6 @@ function EditPlayerTable({
             <tr className={clsx(playerList.length === 0 && 'hidden')}>
               <td className='w-8'></td>
               <td className='px-2'></td>
-              {/* <td className='w-20 pr-2'>Max HP</td> */}
               <td className='w-[110px] px-2'></td>
             </tr>
           </thead>
