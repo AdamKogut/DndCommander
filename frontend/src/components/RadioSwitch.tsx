@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { Switch } from '@headlessui/react';
 import { clsx } from 'clsx';
 

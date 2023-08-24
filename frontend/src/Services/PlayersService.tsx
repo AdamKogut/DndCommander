@@ -26,11 +26,14 @@ export const PlayersSlice = createSlice({
       if (playerIndex !== -1) {
         state.Players.splice(playerIndex, 1);
       }
+    },
+    updatePlayerList: (state, { payload }: PayloadAction<PlayerHealth[]>) => {
+      state.Players = payload;
     }
   }
 });
 
-export const { addUpdatePlayer, deletePlayer } = PlayersSlice.actions;
+export const { addUpdatePlayer, deletePlayer, updatePlayerList } = PlayersSlice.actions;
 
 export const PlayersMigrations = {
   // EXAMPLE

@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import Players from './Views/Players';
 
 function App() {
 
   return (
     <div className='primary-coloring h-full w-full overflow-y-auto overflow-x-hidden'>
-      <Routes>
-      </Routes>
+      <Players />
     </div>
   )
 }
