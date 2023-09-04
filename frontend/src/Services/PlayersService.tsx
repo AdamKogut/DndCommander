@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PlayerHealth, PlayersSliceState } from 'src/Types/Players';
+import { PlayerHealth, PlayerHealthV1, PlayersSliceState, PlayersSliceStateV0, PlayersSliceStateV1, PlayersSliceStateV2 } from 'src/Types/Players';
 
 const initialState: PlayersSliceState = {
   Players: []
@@ -52,4 +52,15 @@ export const PlayersMigrations = {
 	// 		}    
 	// 	}  
   //   }
+  1: (state: PlayersSliceStateV0) => initialState,
+  2: (state: PlayersSliceStateV1): PlayersSliceStateV2 => {
+    return {
+      Players: state.Players.map((value: PlayerHealthV1) => {
+        return {
+          ...value,
+          Conditions: []
+        }
+      })
+    };
+  }
 }

@@ -8,6 +8,7 @@ type StringInputProps = {
   parentClassnameOverride?: string;
   inputOnChange: (e: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
+  errorString?: string;
 }
 
 function StringInput({ placeholder, value, inputClassnameOverride, inputOnChange, labelClassnameOverride, parentClassnameOverride, disabled }: StringInputProps) {

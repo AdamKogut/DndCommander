@@ -1,20 +1,18 @@
 import { ChangeEvent } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { PlayerHealth } from 'src/Types/Players';
 import { clsx } from 'clsx';
 import DragDrop from 'src/Images/DragDrop.png';
 import StringInput from 'src/Components/StringInput';
+import { DisplayPlayerHealth } from '.';
 
 type PlayerTableProps = {
-  player: PlayerHealth;
+  player: DisplayPlayerHealth;
   deletePlayer: (id: number) => void;
-  changeName: (id: number, value: string) => void;
-  changeMax: (id: number, value: string) => void;
-  changeTempMax: (id: number, value: string) => void;
+  changeValue: (id: number, name: string, propertyName: keyof DisplayPlayerHealth) => void;
 }
 
-function EditPlayerRow({ player, deletePlayer, changeMax, changeName, changeTempMax }: PlayerTableProps) {
+function EditPlayerRow({ player, deletePlayer, changeValue }: PlayerTableProps) {
   const {
     attributes,
     listeners,
@@ -30,6 +28,17 @@ function EditPlayerRow({ player, deletePlayer, changeMax, changeName, changeTemp
     transition: transition
   };
 
+  const setErrorString = (value: string) => {
+    const maxInt = +value;
+    if (isNaN(maxInt))
+    {
+      return {
+        errorString:'Must be an integer'
+      };
+    }
+    return {};
+  }
+
   return (
     <tr
       ref={setNodeRef}
@@ -44,18 +53,20 @@ function EditPlayerRow({ player, deletePlayer, changeMax, changeName, changeTemp
         <StringInput
           value={player.Name}
           placeholder='Name'
-          inputOnChange={(e: ChangeEvent<HTMLInputElement>) => changeName(player.Id, e.currentTarget.value)}
+          inputOnChange={(e: ChangeEvent<HTMLInputElement>) => changeValue(player.Id, e.currentTarget.value, 'Name')}
         />
         <div className='grid grid-cols-2'>
           <StringInput
             value={`${player.Max}`}
             placeholder='Max HP'
-            inputOnChange={(e: ChangeEvent<HTMLInputElement>) => changeMax(player.Id, e.currentTarget.value)}
+            inputOnChange={(e: ChangeEvent<HTMLInputElement>) => changeValue(player.Id, e.currentTarget.value, 'Max')}
+            // {...setErrorString(player.Max)}
           />
           <StringInput
             value={`${player.TempMaxHp}`}
             placeholder='Temp Max HP'
-            inputOnChange={(e: ChangeEvent<HTMLInputElement>) => changeTempMax(player.Id, e.currentTarget.value)}
+            inputOnChange={(e: ChangeEvent<HTMLInputElement>) => changeValue(player.Id, e.currentTarget.value, 'TempMaxHp')}
+            // {...setErrorString(player.TempMaxHp)}
           />
         </div>
       </td>

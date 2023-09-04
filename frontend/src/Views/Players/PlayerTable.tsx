@@ -24,16 +24,7 @@ function PlayerTable({ players, selectPlayer }: PlayerTableProps) {
         </thead>
         <tbody>
           {players.map((value: PlayerHealth) => {
-            return (
-              <tr
-                key={value.Id}
-                className={clsx('h-16', value.IsSelected && 'bg-sky-300', 'border-2')}
-                onClick={() => selectPlayer(value.Id)}
-                onKeyDown={() => selectPlayer(value.Id)}
-              >
-                <PlayerRow player={value} />
-              </tr>
-            )
+            return <PlayerRow player={value} selectPlayer={selectPlayer} />;
           })}
         </tbody>
       </table>
