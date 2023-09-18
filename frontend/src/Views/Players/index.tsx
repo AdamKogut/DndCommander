@@ -7,6 +7,7 @@ import AddEditModal from './EditHealthModal';
 import { useModal } from 'src/Hooks/UseModal';
 import { useAppSelector, useAppDispatch } from 'src/Store';
 import { addUpdatePlayer, updatePlayerList } from 'src/Services/PlayersService';
+import Conditions from 'src/Enums/Conditions';
 
 function Players() {
   const playerList = useAppSelector((state) => state.Player).Players;
@@ -76,13 +77,22 @@ function Players() {
     }
   }
 
+  const saveConditions = (playerId: number, conditions: Conditions[]) => {
+    const foundPlayer = playerList.find(x => x.Id === playerId);
+    if (foundPlayer !== undefined) {
+      const updatePlayer = { ...foundPlayer };
+      updatePlayer.Conditions = conditions;
+      dispatch(addUpdatePlayer(updatePlayer));
+    }
+  }
+
   return (
     <div className={clsx('flex h-full flex-col overflow-y-hidden overflow-x-hidden p-4 sm:mx-12')}>
       <PlayerListModification openEditModal={openEditModal} />
-      <PlayerTable selectPlayer={selectPlayer} players={playerList} />
+      <PlayerTable selectPlayer={selectPlayer} players={playerList} saveConditions={saveConditions}/>
       <HealthModification applyModification={applyModification} applyTempModification={applyTempModification} />
     </div>
   )
 }
 
-export default Players
+export default Players;

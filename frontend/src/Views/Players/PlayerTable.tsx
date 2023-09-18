@@ -1,13 +1,14 @@
-import { clsx } from 'clsx';
 import { PlayerHealth } from 'src/Types/Players';
 import PlayerRow from './PlayerRow';
+import Conditions from 'src/Enums/Conditions';
 
 type PlayerTableProps = {
   players: PlayerHealth[];
   selectPlayer: (id: number) => void;
+  saveConditions: (playerId: number, conditions: Conditions[]) => void;
 }
 
-function PlayerTable({ players, selectPlayer }: PlayerTableProps) {
+function PlayerTable({ players, selectPlayer, saveConditions }: PlayerTableProps) {
   return (
     <div className='h-full w-full overflow-y-auto'>
       <table className={'w-[100%] table-fixed'}>
@@ -24,7 +25,7 @@ function PlayerTable({ players, selectPlayer }: PlayerTableProps) {
         </thead>
         <tbody>
           {players.map((value: PlayerHealth) => {
-            return <PlayerRow player={value} selectPlayer={selectPlayer} />;
+            return <PlayerRow player={value} selectPlayer={selectPlayer} saveConditions={saveConditions} />;
           })}
         </tbody>
       </table>

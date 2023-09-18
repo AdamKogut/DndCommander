@@ -30,7 +30,7 @@ function EditPlayerRow({ player, deletePlayer, changeValue }: PlayerTableProps) 
 
   const setErrorString = (value: string) => {
     const maxInt = +value;
-    if (isNaN(maxInt))
+    if (isNaN(maxInt) || value==='')
     {
       return {
         errorString:'Must be an integer'
@@ -60,13 +60,13 @@ function EditPlayerRow({ player, deletePlayer, changeValue }: PlayerTableProps) 
             value={`${player.Max}`}
             placeholder='Max HP'
             inputOnChange={(e: ChangeEvent<HTMLInputElement>) => changeValue(player.Id, e.currentTarget.value, 'Max')}
-            // {...setErrorString(player.Max)}
+            {...setErrorString(player.Max)}
           />
           <StringInput
             value={`${player.TempMaxHp}`}
             placeholder='Temp Max HP'
             inputOnChange={(e: ChangeEvent<HTMLInputElement>) => changeValue(player.Id, e.currentTarget.value, 'TempMaxHp')}
-            // {...setErrorString(player.TempMaxHp)}
+            {...setErrorString(player.TempMaxHp)}
           />
         </div>
       </td>

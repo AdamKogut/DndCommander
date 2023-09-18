@@ -2,7 +2,6 @@ import { useState, MouseEvent, useMemo } from 'react';
 import { arrayMove } from '@dnd-kit/sortable';
 import { PlayerHealth } from 'src/Types/Players';
 import EditPlayerTable from './EditPlayerTable';
-import Conditions from 'src/Enums/Conditions';
 
 type AddEditModalProps = {
   playerList: PlayerHealth[];
@@ -29,21 +28,7 @@ function AddEditModal({ playerList, saveEdit, cancel }: AddEditModalProps) {
       IsSelected: false,
       TempHp: 0,
       TempMaxHp: '0',
-      Conditions: [
-        Conditions.Blinded,
-        Conditions.Blinded,
-        Conditions.Blinded,
-        Conditions.Blinded,
-        Conditions.Blinded,
-        Conditions.Blinded,
-        Conditions.Blinded,
-        Conditions.Blinded,
-        Conditions.Blinded,
-        Conditions.Blinded,
-        Conditions.Blinded,
-        Conditions.Blinded,
-        Conditions.Blinded,
-      ]
+      Conditions: []
     });
     setTempPlayerList(pl);
     e.stopPropagation();

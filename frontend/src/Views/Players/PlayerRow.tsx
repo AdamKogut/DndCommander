@@ -1,17 +1,41 @@
-import { Fragment } from 'react';
+import { Fragment, MouseEventHandler } from 'react';
 import { clsx } from 'clsx';
 import { PlayerHealth } from 'src/Types/Players';
 import { ErrorIcon, WarningIcon } from 'src/Components/Icons';
 import Conditions from 'src/Enums/Conditions';
+import { useModal } from 'src/Hooks/UseModal';
+import EditConditionModal from './EditConditionModal.tsx';
 
-type PlayerTableProps = {
+type PlayerRowProps = {
   player: PlayerHealth;
   selectPlayer: (id: number) => void;
+  saveConditions: (playerId: number, conditions: Conditions[]) => void;
 }
 
-function PlayerRow({ player, selectPlayer }: PlayerTableProps) {
+function PlayerRow({ player, selectPlayer, saveConditions }: PlayerRowProps) {
+  const { create, destroy } = useModal();
   const isWarning = player.Max * .2 < player.Current && player.Max * .5 > player.Current;
   const isError = player.Max * .2 > player.Current;
+
+  const editTags: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+    create({
+      title: 'Edit Conditions',
+      children: (
+        <EditConditionModal
+          cancel={destroy}
+          conditions={player.Conditions}
+          save={internalSaveConditions}
+        />
+      )
+    });
+  }
+
+  const internalSaveConditions = (conditions: Conditions[]) => {
+    saveConditions(player.Id, conditions);
+    destroy();
+  }
+
   return (
     <Fragment>
       <tr
@@ -47,12 +71,12 @@ function PlayerRow({ player, selectPlayer }: PlayerTableProps) {
                   <span>{Conditions[tag]}</span>
                 </div>
             ))}
-            <div
-              className="block cursor-pointer rounded-full bg-[rgb(85,184,240)] px-[.5em] py-1"
-              onClick={() => removeTag(index)}
+            <button
+              className="block cursor-pointer rounded-full bg-white px-[.5em] py-1 border-black"
+              onClick={editTags}
             >
               <span>Edit Conditions</span>
-            </div>
+            </button>
           </div>
         </td>
       </tr>
@@ -60,4 +84,4 @@ function PlayerRow({ player, selectPlayer }: PlayerTableProps) {
   )
 }
 
-export default PlayerRow
+export default PlayerRow;
