@@ -1,21 +1,19 @@
 import { MouseEvent } from 'react';
 import { clsx } from 'clsx';
-import { PlayerHealth } from 'src/Types/Players';
 import SortableList from 'src/Components/SortableList';
 import EditPlayerRow from './EditPlayerRow';
 import { UniqueIdentifier } from '@dnd-kit/core';
+import { DisplayPlayerHealth } from '.';
 
 type EditPlayerTableProps = {
-  playerList: PlayerHealth[];
+  playerList: DisplayPlayerHealth[];
   playerListIds: UniqueIdentifier[];
-  saveEdit: (players: PlayerHealth[]) => void;
+  saveEdit: (players: DisplayPlayerHealth[]) => void;
   cancel: () => void;
   addPlayer: (e: MouseEvent<HTMLButtonElement>) => void;
-  changeName: (id: number, name: string) => void;
-  changeMax: (id: number, max: string) => void;
+  changeValue: (id: number, name: string, propertyName: keyof DisplayPlayerHealth) => void;
   deletePlayer: (id: number) => void;
   updateItems: (start: number, end: number) => void;
-  changeTempMax: (id: number, max: string) => void;
 }
 
 function EditPlayerTable({
@@ -24,21 +22,17 @@ function EditPlayerTable({
   saveEdit,
   cancel,
   addPlayer,
-  changeName,
-  changeMax,
   deletePlayer,
   updateItems,
-  changeTempMax
+  changeValue
 }: EditPlayerTableProps) {
-  const rows = playerList.map((value: PlayerHealth) => {
+  const rows = playerList.map((value: DisplayPlayerHealth) => {
     return (
       <EditPlayerRow
         key={value.Id}
         player={value}
         deletePlayer={deletePlayer}
-        changeMax={changeMax}
-        changeName={changeName}
-        changeTempMax={changeTempMax}
+        changeValue={changeValue}
       />
     )
   })
@@ -52,7 +46,6 @@ function EditPlayerTable({
             <tr className={clsx(playerList.length === 0 && 'hidden')}>
               <td className='w-8'></td>
               <td className='px-2'></td>
-              {/* <td className='w-20 pr-2'>Max HP</td> */}
               <td className='w-[110px] px-2'></td>
             </tr>
           </thead>

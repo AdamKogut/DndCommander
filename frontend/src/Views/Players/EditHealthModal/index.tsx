@@ -9,68 +9,53 @@ type AddEditModalProps = {
   cancel: () => void;
 }
 
+export type DisplayPlayerHealth = Omit<PlayerHealth, 'Max' | 'TempMaxHp'> & {
+  Max: string;
+  TempMaxHp: string;
+}
+
 function AddEditModal({ playerList, saveEdit, cancel }: AddEditModalProps) {
-  const [tempPlayerList, setTempPlayerList] = useState<PlayerHealth[]>(JSON.parse(JSON.stringify(playerList)));
-  const playerListIds = useMemo(() => tempPlayerList.map(({ Id }: PlayerHealth) => Id), [tempPlayerList]);
+  const [tempPlayerList, setTempPlayerList] = useState<DisplayPlayerHealth[]>(JSON.parse(JSON.stringify(playerList)));
+  const playerListIds = useMemo(() => tempPlayerList.map(({ Id }: DisplayPlayerHealth) => Id), [tempPlayerList]);
 
   const addPlayer = (e: MouseEvent<HTMLButtonElement>) => {
     const pl = [...tempPlayerList];
     pl.push({
       Id: Date.now(),
       Name: '',
-      Max: 0,
+      Max: '0',
       Current: 0,
       IsSelected: false,
       TempHp: 0,
-      TempMaxHp: 0
+      TempMaxHp: '0',
+      Conditions: []
     });
     setTempPlayerList(pl);
     e.stopPropagation();
   };
 
-  const changeName = (id: number, name: string) => {
+  const changeDisplayValue = (id: number, value: string, propertyName: keyof DisplayPlayerHealth) => {
     const pl = [...tempPlayerList];
     const foundPlayer = pl.find((x => x.Id === id));
     if (foundPlayer)
     {
-      foundPlayer.Name = name;
+      // @ts-expect-error
+      foundPlayer[propertyName] = value;
     }
 
     setTempPlayerList(pl);
   }
 
-  const changeMax = (id: number, max: string) => {
-    const maxInt = +max;
-    if (isNaN(maxInt))
-    {
-      return;
+  const localSaveEdit = (values: DisplayPlayerHealth[]) => {
+    if (values.every((value: DisplayPlayerHealth) => !isNaN(+value.Max) && !isNaN(+value.TempMaxHp))) {
+      saveEdit(values.map((value: DisplayPlayerHealth) => {
+        return {
+          ...value,
+          Max: +value.Max,
+          TempMaxHp: +value.TempMaxHp
+        }
+      }));
     }
-    
-    const pl = [...tempPlayerList];
-    const foundPlayer = pl.find((x => x.Id === id));
-    if (foundPlayer)
-    {
-      foundPlayer.Max = maxInt;
-    }
-    
-    setTempPlayerList(pl);
-  }
-
-  const changeTempMax = (id: number, max: string) => {
-    const maxInt = +max;
-    if (isNaN(maxInt))
-    {
-      return;
-    }
-    
-    const pl = [...tempPlayerList];
-    const foundPlayer = pl.find((x => x.Id === id));
-    if (foundPlayer)
-    {
-      foundPlayer.TempMaxHp = maxInt;
-    }
-    
-    setTempPlayerList(pl);
   }
 
   const deletePlayer = (id: number) => {
@@ -94,13 +79,11 @@ function AddEditModal({ playerList, saveEdit, cancel }: AddEditModalProps) {
       playerList={tempPlayerList}
       playerListIds={playerListIds}
       cancel={cancel}
-      saveEdit={saveEdit}
+      saveEdit={localSaveEdit}
       addPlayer={addPlayer}
-      changeName={changeName}
-      changeMax={changeMax}
+      changeValue={changeDisplayValue}
       deletePlayer={deletePlayer}
       updateItems={updateItems}
-      changeTempMax={changeTempMax}
     />
   );
 }
