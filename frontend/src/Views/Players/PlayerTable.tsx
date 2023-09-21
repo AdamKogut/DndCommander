@@ -10,17 +10,17 @@ type PlayerTableProps = {
 
 function PlayerTable({ players, selectPlayer, saveConditions }: PlayerTableProps) {
   return (
-    <div className='h-full w-full overflow-y-auto'>
+    <div className='h-full w-full overflow-y-auto overflow-x-hidden'>
       <table className={'w-[100%] table-fixed'}>
         <thead>
           <tr>
-            <th className='break-words border-y-2 border-l-2 w-[60%]'>Name</th>
-            <th className='border-y-2 w-[calc(40%-40px)]'>
+            <th className='break-words border-y-2 border-l-2 w-[60%] border-accent'>Name</th>
+            <th className='border-y-2 w-[calc(40%-40px)] border-accent'>
               Current
-              <hr />
+              <hr className='border-accent'/>
               Max
             </th>
-            <th className='w-9 border-y-2 border-r-2 md:w-12 lg:w-14'></th>
+            <th className='w-9 border-y-2 border-r-2 md:w-12 lg:w-14 border-accent'></th>
           </tr>
         </thead>
         <tbody>

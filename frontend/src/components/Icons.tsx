@@ -1,11 +1,13 @@
-export const AccountIcon = (props: React.SVGProps<SVGSVGElement>) => (
+import {SVGProps} from "react";
+
+export const AccountIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg" {...props}>
     <path fill="currentColor" d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 6c3.31 0 6 2.69 6 6 0 3.32-2.69 6-6 6s-6-2.68-6-6c0-3.31 2.69-6 6-6zm0 28.4c-5.01 0-9.41-2.56-12-6.44.05-3.97 8.01-6.16 12-6.16s11.94 2.19 12 6.16c-2.59 3.88-6.99 6.44-12 6.44z" />
     <path d="M0 0h48v48H0z" fill="none" />
   </svg>
 );
 
-export const BackpackIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const BackpackIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg fill="currentColor" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
     <g>
       <g>
@@ -41,7 +43,7 @@ export const BackpackIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const ErrorIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const ErrorIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg fill="#f52020" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 478.125 478.125" {...props}>
     <g>
       <g>
@@ -58,7 +60,7 @@ export const ErrorIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const HealthIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const HealthIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg width="800px" height="800px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" {...props}>
     <g id="out" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <path d="M19,3 L5,3 C3.9,3 3.01,3.9 3.01,5 L3,19 C3,20.1 3.9,21 5,21 L19,21 C20.1,21 21,20.1 21,19 L21,5 C21,3.9 20.1,3 19,3 L19,3 Z M18,14 L14,14 L14,18 L10,18 L10,14 L6,14 L6,10 L10,10 L10,6 L14,6 L14,10 L18,10 L18,14 L18,14 Z" id="path" fill="currentColor" />
@@ -66,7 +68,7 @@ export const HealthIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const HomeIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const HomeIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <path d="M20 11.75C19.8376 11.7507 19.6795 11.698 19.55 11.6L12 5.94L4.45 11.6C4.29087 11.7193 4.09085 11.7706 3.89394 11.7425C3.69702 11.7143 3.51935 11.6091 3.4 11.45C3.28066 11.2909 3.22941 11.0908 3.25754 10.8939C3.28567 10.697 3.39087 10.5193 3.55 10.4L11.55 4.4C11.6798 4.30263 11.8377 4.25 12 4.25C12.1623 4.25 12.3202 4.30263 12.45 4.4L20.45 10.4C20.5952 10.5179 20.6911 10.6859 20.7189 10.8709C20.7466 11.0559 20.7042 11.2446 20.6 11.4C20.5363 11.503 20.4482 11.5888 20.3436 11.6498C20.239 11.7108 20.121 11.7452 20 11.75Z" fill="currentColor" />
     <path d="M18 19.75H6C5.80189 19.7474 5.61263 19.6676 5.47253 19.5275C5.33244 19.3874 5.25259 19.1981 5.25 19V9.5C5.25 9.30109 5.32902 9.11032 5.46967 8.96967C5.61032 8.82902 5.80109 8.75 6 8.75C6.19891 8.75 6.38968 8.82902 6.53033 8.96967C6.67098 9.11032 6.75 9.30109 6.75 9.5V18.25H17.25V9.5C17.25 9.30109 17.329 9.11032 17.4697 8.96967C17.6103 8.82902 17.8011 8.75 18 8.75C18.1989 8.75 18.3897 8.82902 18.5303 8.96967C18.671 9.11032 18.75 9.30109 18.75 9.5V19C18.7474 19.1981 18.6676 19.3874 18.5275 19.5275C18.3874 19.6676 18.1981 19.7474 18 19.75Z" fill="currentColor" />
@@ -74,7 +76,7 @@ export const HomeIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const OpenBookIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const OpenBookIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg fill="currentColor" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
     <g>
       <g>
@@ -144,7 +146,7 @@ export const OpenBookIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const SwordIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const SwordIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 32 32" fill="currentColor" {...props}>
     <path d="M30.146,28.561l-1.586,1.586c-0.292,0.292-0.676,0.438-1.061,0.438s-0.768-0.146-1.061-0.438
       l-4.293-4.293l-2.232,2.232c-0.391,0.391-0.902,0.586-1.414,0.586s-1.024-0.195-1.414-0.586l-0.172-0.172
@@ -156,7 +158,7 @@ export const SwordIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const WarningIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const WarningIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.146 192.146" {...props}>
     <g>
       <g>
@@ -174,7 +176,7 @@ export const WarningIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const TrashIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const TrashIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <g id="Interface / Trash_Full">
       <path id="Vector" d="M14 10V17M10 10V17M6 6V17.8C6 18.9201 6 19.4798 6.21799 19.9076C6.40973 20.2839 6.71547 20.5905 7.0918 20.7822C7.5192 21 8.07899 21 9.19691 21H14.8031C15.921 21 16.48 21 16.9074 20.7822C17.2837 20.5905 17.5905 20.2839 17.7822 19.9076C18 19.4802 18 18.921 18 17.8031V6M6 6H8M6 6H4M8 6H16M8 6C8 5.06812 8 4.60241 8.15224 4.23486C8.35523 3.74481 8.74432 3.35523 9.23438 3.15224C9.60192 3 10.0681 3 11 3H13C13.9319 3 14.3978 3 14.7654 3.15224C15.2554 3.35523 15.6447 3.74481 15.8477 4.23486C15.9999 4.6024 16 5.06812 16 6M16 6H18M18 6H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -182,13 +184,13 @@ export const TrashIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const HamburgerIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const HamburgerIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path clipRule="evenodd" fillRule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
   </svg>
 )
 
-export const PlusIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const PlusIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg width="800px" height="800px" viewBox="0 -0.5 9 9" version="1.1" xmlns="http://www.w3.org/2000/svg" {...props}>
     <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g id="Dribbble-Light-Preview" transform="translate(-345.000000, -206.000000)" fill="currentColor">
@@ -202,13 +204,13 @@ export const PlusIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const ChevronIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const ChevronIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg width="800px" height="800px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none" {...props}>
     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 7l6 6 6-6"/>
   </svg>
 );
 
-export const EditIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const EditIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg fill="currentColor" height="800px" width="800px" version="1.1" xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 348.882 348.882" xmlSpace="preserve" {...props}>
     <g>
@@ -223,5 +225,17 @@ export const EditIcon = (props: React.SVGProps<SVGSVGElement>) => (
 		s-6.716-15-15-15H68.904c-37.577,0-68.147,30.571-68.147,68.147v180.321c0,37.576,30.571,68.147,68.147,68.147h181.798
 		c37.576,0,68.147-30.571,68.147-68.147V153.388C318.85,145.104,312.134,138.388,303.85,138.388z"/>
     </g>
+  </svg>
+);
+
+export const DragAndDropIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg fill="currentColor" version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 32 32" {...props}>
+    <rect x="10" y="6" width="4" height="4"/>
+    <rect x="18" y="6" width="4" height="4"/>
+    <rect x="10" y="14" width="4" height="4"/>
+    <rect x="18" y="14" width="4" height="4"/>
+    <rect x="10" y="22" width="4" height="4"/>
+    <rect x="18" y="22" width="4" height="4"/>
+    <rect id="_Transparent_Rectangle_" className="fill-none" width="32" height="32"/>
   </svg>
 );

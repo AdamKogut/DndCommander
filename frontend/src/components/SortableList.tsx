@@ -71,7 +71,13 @@ function SortableList({ idList, itemList, setArray }: SortableListProps) {
         {itemList}
       </SortableContext>
       <DragOverlay>
-        {activeId && selectedRow}
+        {activeId && 
+          <table className='w-full'>
+            <tbody>
+              {selectedRow}
+            </tbody>
+          </table>
+        }
       </DragOverlay>
     </DndContext>
   );
