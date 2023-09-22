@@ -43,7 +43,7 @@ function EditPlayerRow({ player, deletePlayer, changeValue }: PlayerTableProps) 
     <tr
       ref={setNodeRef}
       key={player.Id}
-      className={clsx('h-12 border-y-2 bg-primary-light border-accent', isDragging && 'invisible')}
+      className={clsx('h-12 border-y-2 bg-primary-light border-accent dark:bg-primary-dark', isDragging && 'invisible')}
       style={style}
     >
       <td {...attributes} {...listeners} className='w-[40px]'>
