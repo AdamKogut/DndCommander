@@ -1,10 +1,10 @@
-import { ChangeEvent } from 'react';
+import { CSSProperties, ChangeEvent } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { clsx } from 'clsx';
-import DragDrop from 'src/Images/DragDrop.png';
 import StringInput from 'src/Components/StringInput';
 import { DisplayPlayerHealth } from '.';
+import { DragAndDropIcon } from 'src/Components/Icons';
 
 type PlayerTableProps = {
   player: DisplayPlayerHealth;
@@ -23,7 +23,7 @@ function EditPlayerRow({ player, deletePlayer, changeValue }: PlayerTableProps) 
   } = useSortable({
     id: player.Id
   });
-  const style = {
+  const style: CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition: transition
   };
@@ -43,11 +43,11 @@ function EditPlayerRow({ player, deletePlayer, changeValue }: PlayerTableProps) 
     <tr
       ref={setNodeRef}
       key={player.Id}
-      className={clsx('h-12 border-y-2 bg-white', isDragging && 'invisible')}
+      className={clsx('h-12 border-y-2 bg-primary-light border-accent dark:bg-primary-dark', isDragging && 'invisible')}
       style={style}
     >
       <td {...attributes} {...listeners} className='w-[40px]'>
-        <img className='h-8 w-8' src={DragDrop} alt='Drag and drop icon' />
+        <DragAndDropIcon className='h-8 w-8' />
       </td>
       <td className='px-2'>
         <StringInput
@@ -71,7 +71,7 @@ function EditPlayerRow({ player, deletePlayer, changeValue }: PlayerTableProps) 
         </div>
       </td>
       <td className='pr-2'>
-        <button className='w-[99px] bg-red-500' onClick={() => deletePlayer(player.Id)}>Delete</button>
+        <button className='w-[99px] bg-calltoaction-red text-white' onClick={() => deletePlayer(player.Id)}>Delete</button>
       </td>
     </tr>
   );

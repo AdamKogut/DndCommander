@@ -28,7 +28,7 @@ function EditConditionModal({conditions, save, cancel}:EditConditionModalProps) 
       <div className='h-[calc(100%-53px)] overflow-y-auto'>
         <div className='grid grid-cols-2 md:grid-cols-3'>
           {Object.keys(Conditions).filter((k: string) => !isNaN(+k)).map((value: string) => (
-            <label className='border-black mx-3 my-1 p-3 border-2 flex flex-row rounded-xl text-lg'>
+            <label className='border-black mx-3 my-1 p-3 border-2 flex flex-row rounded-xl text-lg hover:bg-calltoaction dark:hover:text-black'>
               <input
                 className='mr-4'
                 type='checkbox'
@@ -40,9 +40,9 @@ function EditConditionModal({conditions, save, cancel}:EditConditionModalProps) 
           ))}
         </div>
       </div>
-      <div className='bg-slate-200 pb-1 text-right'>
-        <button className='btn-primary mt-4 mr-4 py-1' onClick={cancel}>Cancel</button>
-        <button className='btn-primary mt-4 mr-4 py-1' onClick={() => save(newConditions)}>Save</button>
+      <div className='bg-primary-dark pb-1 text-right dark:bg-primary-light'>
+        <button className='bg-calltoaction text-black mt-4 mr-4 py-1' onClick={cancel}>Cancel</button>
+        <button className='bg-calltoaction text-black mt-4 mr-4 py-1' onClick={() => save(newConditions)}>Save</button>
       </div>
     </div>
   )

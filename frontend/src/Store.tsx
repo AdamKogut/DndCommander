@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { persistStore, persistReducer, PersistConfig, createMigrate } from 'redux-persist';
 import { PlayersMigrations, PlayersSlice } from "./Services/PlayersService";
-import { PlayersSliceState, PlayersSliceStateMigrationState } from "./Types/Players";
+import { PlayersSliceState } from "./Types/Players";
 import storage from 'redux-persist/lib/storage';
 
 const persistPlayerConfig: PersistConfig<PlayersSliceState> = {

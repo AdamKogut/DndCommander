@@ -37,7 +37,7 @@ function RadioSwitch({ isActive, setIsActive, label, switchBackgroundCssOverride
       </Switch>
       <label
         htmlFor="floating_prepared"
-        className={`absolute top-[22px] left-20 z-10 origin-[0] -translate-y-4 duration-300 dark:text-black ${labelCssOverride}`}
+        className={`absolute top-[22px] left-20 z-10 origin-[0] -translate-y-4 duration-300 ${labelCssOverride}`}
       >
         {label}
       </label>
