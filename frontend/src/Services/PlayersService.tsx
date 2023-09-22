@@ -52,7 +52,7 @@ export const PlayersMigrations = {
 	// 		}    
 	// 	}  
   //   }
-  1: (state: PlayersSliceStateV0) => initialState,
+  1: (_state: PlayersSliceStateV0) => initialState,
   2: (state: PlayersSliceStateV1): PlayersSliceStateV2 => {
     return {
       Players: state.Players.map((value: PlayerHealthV1) => {
