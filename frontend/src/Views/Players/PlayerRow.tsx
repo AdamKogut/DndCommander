@@ -1,9 +1,9 @@
 import { Fragment, MouseEventHandler } from 'react';
 import { clsx } from 'clsx';
 import { PlayerHealth } from 'src/Types/Players';
-import { ErrorIcon, WarningIcon } from 'src/Components/Icons';
+import { ErrorIcon, WarningIcon } from 'src/components/Icons';
 import Conditions from 'src/Enums/Conditions';
-import { useModal } from 'src/Hooks/UseModal';
+import { useModal } from 'src/hooks/UseModal';
 import EditConditionModal from './EditConditionModal.tsx';
 
 type PlayerRowProps = {

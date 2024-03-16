@@ -4,6 +4,8 @@ import { persistStore, persistReducer, PersistConfig, createMigrate } from 'redu
 import { PlayersMigrations, PlayersSlice } from "./Services/PlayersService";
 import { PlayersSliceState } from "./Types/Players";
 import storage from 'redux-persist/lib/storage';
+import { CampaignsSliceState } from "./Types/Campaigns";
+import { CampaignsMigrations, CampaignsSlice } from "./Services/CampaignsService";
 
 const persistPlayerConfig: PersistConfig<PlayersSliceState> = {
   // @ts-ignore
@@ -12,12 +14,21 @@ const persistPlayerConfig: PersistConfig<PlayersSliceState> = {
   key: PlayersSlice.name,
   version:2
 }
-
 const persistedPlayerSlice = persistReducer(persistPlayerConfig, PlayersSlice.reducer);
+
+const persistCampaignConfig: PersistConfig<CampaignsSliceState> = {
+  // @ts-ignore
+  migrate: createMigrate(CampaignsMigrations, { debug: true }),
+  storage: storage,
+  key: CampaignsSlice.name,
+  version: 0
+}
+const persistedCampaignsSlice = persistReducer(persistCampaignConfig, CampaignsSlice.reducer);
 
 export const Store = configureStore({
   reducer: {
-    [PlayersSlice.name]: persistedPlayerSlice
+    [PlayersSlice.name]: persistedPlayerSlice,
+    [CampaignsSlice.name]: persistedCampaignsSlice
   }
 });
 

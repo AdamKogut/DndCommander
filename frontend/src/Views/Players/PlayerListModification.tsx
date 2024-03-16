@@ -1,13 +1,15 @@
 type PlayerListModificationProps = {
   openEditModal: () => void;
+  openCampaignModal: () => void;
 }
 
-function PlayerListModification({ openEditModal }: PlayerListModificationProps) {
+function PlayerListModification({ openEditModal, openCampaignModal }: PlayerListModificationProps) {
   return (
     <div className='flex flex-row place-content-between space-x-4 pb-6'>
       <h2 className='text-3xl'>Player Health List</h2>
       <div className='flex flex-row place-content-end space-x-4'>
         <button className="bg-calltoaction text-black" onClick={openEditModal}>Edit Players</button>
+        <button className="bg-calltoaction text-black" onClick={openCampaignModal}>Edit Campaigns</button>
       </div>
     </div>
   )
