@@ -43,7 +43,7 @@ function EditCampaignTable({
 
   return (
     <div className='h-full max-h-full min-w-[34%]'>
-      <button className='my-4 ml-4 mr-20 bg-calltoaction text-black' onClick={addCampaign}>Add Campaign</button>
+      <button className='my-4 ml-4 mr-20 bg-custom-orange text-black' onClick={addCampaign}>Add Campaign</button>
       <div className='h-[calc(100%-127px)] overflow-y-auto'>
         <table className={'w-[100%] table-fixed'}>
           <thead>
@@ -58,9 +58,9 @@ function EditCampaignTable({
           </tbody>
         </table>
       </div>
-      <div className='bg-primary-dark pb-1 w-full text-right dark:bg-primary-light'>
-        <button className='bg-calltoaction text-black mt-4 mr-4 py-1' onClick={cancel}>Cancel</button>
-        <button className='bg-calltoaction text-black mt-4 mr-4 py-1' onClick={() => saveEdit(campaignList)}>Save</button>
+      <div className='bg-black pb-1 w-full text-right dark:bg-custom-orange'>
+        <button className='bg-custom-orange text-black mt-4 mr-4 py-1 dark:bg-black dark:text-custom-orange' onClick={cancel}>Cancel</button>
+        <button className='bg-custom-orange text-black mt-4 mr-4 py-1 dark:bg-black dark:text-custom-orange' onClick={() => saveEdit(campaignList)}>Save</button>
       </div>
     </div>
   );

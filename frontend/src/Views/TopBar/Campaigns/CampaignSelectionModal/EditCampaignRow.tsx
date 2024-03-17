@@ -34,7 +34,7 @@ function EditCampaignRow({ campaign, deleteCampaign, changeValue, selectCampaign
     <tr
       ref={setNodeRef}
       key={campaign.Id}
-      className={clsx('h-12 border-y-2 bg-primary-light border-accent dark:bg-primary-dark', isDragging && 'invisible')}
+      className={clsx('h-12 border-y-2 bg-white border-black dark:bg-black dark:border-custom-grey', isDragging && 'invisible')}
       style={style}
     >
       <td {...attributes} {...listeners} className='w-[40px]'>
@@ -48,8 +48,8 @@ function EditCampaignRow({ campaign, deleteCampaign, changeValue, selectCampaign
         />
       </td>
       <td className='pr-2'>
-        <button className='w-[99px] bg-calltoaction-red text-white my-2' onClick={() => deleteCampaign(campaign.Id)}>Delete</button>
-        <button className='w-[99px] disabled:bg-primary-dark disabled:text-white mb-2' onClick={() => selectCampaign(campaign.Id)} disabled={isCampaignSelected}>{isCampaignSelected?'Selected':'Select'}</button>
+        <button className='w-[99px] bg-custom-red text-white my-2' onClick={() => deleteCampaign(campaign.Id)}>Delete</button>
+        <button className='w-[99px] bg-custom-grey disabled:bg-white disabled:text-black mb-2 dark:disabled:bg-black dark:disabled:text-white dark:text-black' onClick={() => selectCampaign(campaign.Id)} disabled={isCampaignSelected}>{isCampaignSelected?'Selected':'Select'}</button>
       </td>
     </tr>
   );

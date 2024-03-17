@@ -28,11 +28,11 @@ function TopBar() {
   };
 
   return (
-    <div className='h-12 w-full border-b-2 flex'>
+    <div className='h-12 w-full flex bg-custom-orange'>
       <div className='grow' />
       <Menu as="div">
         <Menu.Button className='p-1 mr-4'>
-          <HamburgerIcon className='h-10 w-10' />
+          <HamburgerIcon className='h-10 w-10 dark:text-black' />
         </Menu.Button>
         <Transition
           as={Fragment}
@@ -48,7 +48,7 @@ function TopBar() {
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    className={`${active ? 'bg-primary-dark text-white' : 'text-gray-900 dark:bg-primary-light'
+                    className={`${active ? 'bg-custom-orange text-black' : 'text-gray-900 dark:bg-custom-grey'
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                     onClick={openCampaignModal}
                   >
