@@ -43,7 +43,7 @@ function EditPlayerRow({ player, deletePlayer, changeValue }: PlayerTableProps) 
     <tr
       ref={setNodeRef}
       key={player.Id}
-      className={clsx('h-12 border-y-2 bg-primary-light border-accent dark:bg-primary-dark', isDragging && 'invisible')}
+      className={clsx('h-12 border-y-2 bg-white border-black dark:bg-black dark:border-custom-grey', isDragging && 'invisible')}
       style={style}
     >
       <td {...attributes} {...listeners} className='w-[40px]'>
@@ -71,7 +71,7 @@ function EditPlayerRow({ player, deletePlayer, changeValue }: PlayerTableProps) 
         </div>
       </td>
       <td className='pr-2'>
-        <button className='w-[99px] bg-calltoaction-red text-white' onClick={() => deletePlayer(player.Id)}>Delete</button>
+        <button className='w-[99px] bg-custom-red text-white' onClick={() => deletePlayer(player.Id)}>Delete</button>
       </td>
     </tr>
   );
