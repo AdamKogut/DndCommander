@@ -14,7 +14,7 @@ type CampaignTableProps = {
   isCampaignSelected: boolean;
 }
 
-function EditCampaignRow({ campaign, deleteCampaign, changeValue, selectCampaign }: CampaignTableProps) {
+function EditCampaignRow({ campaign, deleteCampaign, changeValue, selectCampaign, isCampaignSelected }: CampaignTableProps) {
   const {
     attributes,
     listeners,
@@ -48,8 +48,8 @@ function EditCampaignRow({ campaign, deleteCampaign, changeValue, selectCampaign
         />
       </td>
       <td className='pr-2'>
-        <button className='w-[99px] bg-calltoaction-red text-white' onClick={() => deleteCampaign(campaign.Id)}>Delete</button>
-        <button className='w-[99px]' onClick={() => selectCampaign(campaign.Id)}>Select</button>
+        <button className='w-[99px] bg-calltoaction-red text-white my-2' onClick={() => deleteCampaign(campaign.Id)}>Delete</button>
+        <button className='w-[99px] disabled:bg-primary-dark disabled:text-white mb-2' onClick={() => selectCampaign(campaign.Id)} disabled={isCampaignSelected}>{isCampaignSelected?'Selected':'Select'}</button>
       </td>
     </tr>
   );

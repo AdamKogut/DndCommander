@@ -6,15 +6,11 @@ import PlayerListModification from './PlayerListModification';
 import AddEditModal from './EditHealthModal';
 import { useModal } from 'src/hooks/UseModal';
 import { useAppSelector, useAppDispatch } from 'src/Store';
-import { InitialPlayerState, addUpdatePlayer, updatePlayerList } from 'src/Services/PlayersService';
+import { addUpdatePlayer, updatePlayerList } from 'src/Services/PlayersService';
 import Conditions from 'src/Enums/Conditions';
-import CampaignSelectionModal from '../Campaigns/CampaignSelectionModal';
-import { CampaignsSliceState } from 'src/Types/Campaigns';
-import { updateCampaignSlice } from 'src/Services/CampaignsService';
 
 function Players() {
   const playerList = useAppSelector((state) => state.Player);
-  const campaignList = useAppSelector((state) => state.Campaign);
   const dispatch = useAppDispatch();
   const { create, destroy } = useModal();
 
@@ -60,19 +56,6 @@ function Players() {
     });
   }
 
-  const openCampaignModal = () => {
-    create({
-      title: 'Edit Campaigns',
-      children: <CampaignSelectionModal campaignList={campaignList} currentPlayerState={playerList} saveEdit={saveCampaignEdit} cancel={destroy} />
-    });
-  }
-
-  const saveCampaignEdit = (campaignList: CampaignsSliceState) => {
-    dispatch(updateCampaignSlice(campaignList));
-    dispatch(updatePlayerList(campaignList.Campaigns.find(x => x.Id == campaignList.CurrentCampaign)?.PlayerSliceInfo.Players ?? InitialPlayerState.Players));
-    destroy();
-  };
-
   const saveEdit = (playerList: PlayerHealth[]) => {
     for (const playerIndex in playerList) {
       const player = playerList[playerIndex];
@@ -104,8 +87,8 @@ function Players() {
   }
 
   return (
-    <div className={clsx('flex h-full flex-col overflow-y-hidden overflow-x-hidden p-4 sm:mx-12')}>
-      <PlayerListModification openEditModal={openEditModal} openCampaignModal={openCampaignModal} />
+    <div className={clsx('flex flex-col overflow-y-hidden overflow-x-hidden p-4 sm:mx-12 flex-1')}>
+      <PlayerListModification openEditModal={openEditModal} />
       <PlayerTable selectPlayer={selectPlayer} players={playerList.Players} saveConditions={saveConditions}/>
       <HealthModification applyModification={applyModification} applyTempModification={applyTempModification} />
     </div>

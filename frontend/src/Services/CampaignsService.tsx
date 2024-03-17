@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CampaignInfo, CampaignsSliceState, CampaignsSliceStateV0, CampaignsSliceStateV1 } from 'src/Types/Campaigns';
+import { addUpdatePlayer, updatePlayerList } from './PlayersService';
 
 const initialState: CampaignsSliceState = {
   Campaigns: [],
@@ -35,7 +36,34 @@ export const CampaignsSlice = createSlice({
       state.Campaigns = payload.Campaigns;
       state.CurrentCampaign = payload.CurrentCampaign;
     },
-  }
+  },
+  extraReducers: {
+    [addUpdatePlayer.type]: (state, { payload }) => {
+      const currentCampaignIndex = state.Campaigns.findIndex(x => x.Id == state.CurrentCampaign);
+      if (currentCampaignIndex === -1) {
+        return;
+      }
+
+      if (payload.Id === 0) {
+        payload.Id = Date.now();
+        state.Campaigns[currentCampaignIndex].PlayerSliceInfo.Players.push(payload);
+        return;
+      }
+
+      const playerIndex = state.Campaigns[currentCampaignIndex].PlayerSliceInfo.Players.findIndex(x => x.Id === payload.Id);
+      if (playerIndex !== -1) {
+        state.Campaigns[currentCampaignIndex].PlayerSliceInfo.Players[playerIndex] = payload;
+      }
+    },
+    [updatePlayerList.type]: (state, { payload }) => {
+      const currentCampaignIndex = state.Campaigns.findIndex(x => x.Id == state.CurrentCampaign);
+      if (currentCampaignIndex === -1) {
+        return;
+      }
+
+      state.Campaigns[currentCampaignIndex].PlayerSliceInfo.Players = payload;
+    }
+  },
 });
 
 export const { addUpdateCampaign, deleteCampaign, updateCampaignList, updateCampaignSlice } = CampaignsSlice.actions;
