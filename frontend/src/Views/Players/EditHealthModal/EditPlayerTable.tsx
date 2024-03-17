@@ -1,6 +1,6 @@
 import { MouseEvent } from 'react';
 import { clsx } from 'clsx';
-import SortableList from 'src/Components/SortableList';
+import SortableList from 'src/components/SortableList';
 import EditPlayerRow from './EditPlayerRow';
 import { UniqueIdentifier } from '@dnd-kit/core';
 import { DisplayPlayerHealth } from '.';

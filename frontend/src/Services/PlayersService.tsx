@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PlayerHealth, PlayerHealthV1, PlayersSliceState, PlayersSliceStateV0, PlayersSliceStateV1, PlayersSliceStateV2 } from 'src/Types/Players';
 
-const initialState: PlayersSliceState = {
+export const InitialPlayerState: PlayersSliceState = {
   Players: []
 };
+const initialState = InitialPlayerState;
 
 export const PlayersSlice = createSlice({
   name: 'Player',
@@ -52,7 +53,7 @@ export const PlayersMigrations = {
 	// 		}    
 	// 	}  
   //   }
-  1: (_state: PlayersSliceStateV0) => initialState,
+  1: (_state: PlayersSliceStateV0) => InitialPlayerState,
   2: (state: PlayersSliceStateV1): PlayersSliceStateV2 => {
     return {
       Players: state.Players.map((value: PlayerHealthV1) => {

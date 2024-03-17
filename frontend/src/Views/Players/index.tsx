@@ -4,18 +4,18 @@ import HealthModification from './HealthModification'
 import PlayerTable from './PlayerTable';
 import PlayerListModification from './PlayerListModification';
 import AddEditModal from './EditHealthModal';
-import { useModal } from 'src/Hooks/UseModal';
+import { useModal } from 'src/hooks/UseModal';
 import { useAppSelector, useAppDispatch } from 'src/Store';
 import { addUpdatePlayer, updatePlayerList } from 'src/Services/PlayersService';
 import Conditions from 'src/Enums/Conditions';
 
 function Players() {
-  const playerList = useAppSelector((state) => state.Player).Players;
+  const playerList = useAppSelector((state) => state.Player);
   const dispatch = useAppDispatch();
   const { create, destroy } = useModal();
 
   const applyModification = (amt: number) => {
-    playerList.forEach((currPlayer: PlayerHealth) => {
+    playerList.Players.forEach((currPlayer: PlayerHealth) => {
       if (currPlayer.IsSelected) {
         const newPlayer = { ...currPlayer };
         if (amt === 0) {
@@ -40,7 +40,7 @@ function Players() {
   }
 
   const applyTempModification = (amt: number) => {
-    playerList.forEach((currPlayer: PlayerHealth) => {
+    playerList.Players.forEach((currPlayer: PlayerHealth) => {
       if (currPlayer.IsSelected) {
         const newPlayer = { ...currPlayer };
         newPlayer.TempHp += amt;
@@ -52,7 +52,7 @@ function Players() {
   const openEditModal = () => {
     create({
       title: 'Edit Players',
-      children: <AddEditModal playerList={playerList} saveEdit={saveEdit} cancel={destroy} />
+      children: <AddEditModal playerList={playerList.Players} saveEdit={saveEdit} cancel={destroy} />
     });
   }
 
@@ -69,7 +69,7 @@ function Players() {
   };
 
   const selectPlayer = (id: number) => {
-    const foundPlayer = playerList.find(x => x.Id === id);
+    const foundPlayer = playerList.Players.find(x => x.Id === id);
     if (foundPlayer !== undefined) {
       const updatePlayer = { ...foundPlayer };
       updatePlayer.IsSelected = !updatePlayer.IsSelected;
@@ -78,7 +78,7 @@ function Players() {
   }
 
   const saveConditions = (playerId: number, conditions: Conditions[]) => {
-    const foundPlayer = playerList.find(x => x.Id === playerId);
+    const foundPlayer = playerList.Players.find(x => x.Id === playerId);
     if (foundPlayer !== undefined) {
       const updatePlayer = { ...foundPlayer };
       updatePlayer.Conditions = conditions;
@@ -87,9 +87,9 @@ function Players() {
   }
 
   return (
-    <div className={clsx('flex h-full flex-col overflow-y-hidden overflow-x-hidden p-4 sm:mx-12')}>
+    <div className={clsx('flex flex-col overflow-y-hidden overflow-x-hidden p-4 sm:mx-12 flex-1')}>
       <PlayerListModification openEditModal={openEditModal} />
-      <PlayerTable selectPlayer={selectPlayer} players={playerList} saveConditions={saveConditions}/>
+      <PlayerTable selectPlayer={selectPlayer} players={playerList.Players} saveConditions={saveConditions}/>
       <HealthModification applyModification={applyModification} applyTempModification={applyTempModification} />
     </div>
   )

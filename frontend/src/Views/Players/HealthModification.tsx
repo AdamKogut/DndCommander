@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { PopoverButton } from "src/Components/PopoverButton";
+import { PopoverButton } from "src/components/PopoverButton";
 
 type HealthModificationProps = {
   applyModification: (amt: number) => void;

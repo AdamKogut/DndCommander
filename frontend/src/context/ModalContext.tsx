@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useCallback, useState } from 'react';
-import { Modal } from 'src/Components/Modal';
+import { Modal } from 'src/components/Modal';
 
 type Modal = {
   title: string;

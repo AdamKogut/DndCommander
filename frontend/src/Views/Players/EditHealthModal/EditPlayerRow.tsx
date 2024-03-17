@@ -2,9 +2,9 @@ import { CSSProperties, ChangeEvent } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { clsx } from 'clsx';
-import StringInput from 'src/Components/StringInput';
+import StringInput from 'src/components/StringInput';
 import { DisplayPlayerHealth } from '.';
-import { DragAndDropIcon } from 'src/Components/Icons';
+import { DragAndDropIcon } from 'src/components/Icons';
 
 type PlayerTableProps = {
   player: DisplayPlayerHealth;
